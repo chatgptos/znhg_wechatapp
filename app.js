@@ -69,7 +69,7 @@ App({
                                 },
                                 success: function (res) {
                                     wx.hideLoading();
-                                    //
+                                    //授权升级了
                                     // console.log(code)
                                     if (res.code == 0) {
                                         wx.setStorageSync("access_token", res.data.access_token);
