@@ -6,6 +6,7 @@
     "pages/goods/goods",
     "pages/list/list",
     "pages/user/user",
+    "pages/user-new/user",
     "pages/search/search",
     "pages/order-submit/order-submit",
     "pages/order/order",
