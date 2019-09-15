@@ -2,7 +2,7 @@
 //获取应用实例
 
 var api = require('../../api.js');
-const app = getApp()
+const app = getApp();
 
 // Page({
 //   data: {
@@ -60,13 +60,13 @@ Page({
         show_customer_service: 0,
         user_center_bg: "/images/img-user-bg.png",
 
-        motto: 'Hello World',
-        userInfo: {},
-        hasUserInfo: false,
-        canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        list:[
-            { text: "成为商家" }, { text: "我的好友" }, { text: "我的二维码" }, { text: "意见反馈" }, { text: "系统设置" },
-        ]
+        // motto: 'Hello World',
+        // userInfo: {},
+        // hasUserInfo: false,
+        // canIUse: wx.canIUse('button.open-type.getUserInfo'),
+        // list:[
+        //     { text: "成为商家" }, { text: "我的好友" }, { text: "我的二维码" }, { text: "意见反馈" }, { text: "系统设置" },
+        // ]
     },
 
     /**
@@ -190,6 +190,11 @@ Page({
     member: function () {
         wx.navigateTo({
             url: '/pages/member/member',
+        })
+    },
+    card: function () {
+        wx.navigateTo({
+            url: '/pages/card/card',
         })
     }
 });
