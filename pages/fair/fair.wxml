@@ -1,0 +1,64 @@
+<!--index.wxml
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+</view>
+-->
+<include src="/commons/navbar/navbar"/>
+<view class="container">
+  <view class="tCenter">
+    <view class="top-menu-box">
+      <view class="item">优惠券商</view>
+      <view class="item">交易市场</view>
+      <view class="item">优惠商场</view>
+      <view class="item active">账户详情</view>
+    </view>
+  </view>
+  <view class="block-area">
+    <view class="title-box">
+      <image class="personal-icons" mode="widthFix"  src="../../images/integral.png"></image>
+      积分
+    </view>
+    <view class="text-number">
+      <text class="integral-motto">{{integral}}</text>
+    </view>
+    <view class="btn-group">
+      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>充值</button>
+      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>提现</button>
+    </view>
+  </view>
+  <view class="block-area">
+    <view class="title-box">
+    <image class="personal-icons" mode="widthFix"  src="../../images/score.png"></image>
+      欢乐豆
+    </view>
+    <view class="text-number">
+      <text class="integral-motto">{{score}}</text>
+    </view>
+    <view class="btn-group">
+      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>获取</button>
+      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>兑换</button>
+    </view>
+  </view>
+  <view class="block-area">
+    <view class="title-box">
+    <image class="personal-icons" mode="widthFix"  src="../../images/coupon.png"></image>
+      优惠券
+    </view>
+    <view class="text-number">
+      <text class="integral-motto">{{coupon}}</text>
+    </view>
+    <view class="btn-group">
+      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>获取</button>
+      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>出售</button>
+    </view>
+  </view>
+</view>
