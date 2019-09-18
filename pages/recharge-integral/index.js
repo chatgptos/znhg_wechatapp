@@ -87,47 +87,47 @@ Page({
         if (page.data.cash_max_day != -1) {
             cash_max = min(cash_max, page.data.cash_max_day)
         }
-        if (cash > cash_max) {
-            wx.showToast({
-                title: "提现金额不能超过" + cash_max + "元",
-                image: "/images/icon-warning.png",
-            });
-            return;
-        }
-        if (cash < parseFloat(page.data.share_setting.min_money)) {
-            wx.showToast({
-                title: "提现金额不能低于" + page.data.share_setting.min_money + "元",
-                image: "/images/icon-warning.png",
-            });
-            return;
-        }
-        var name = e.detail.value.name;
-        var mobile = e.detail.value.mobile;
-        if (!name || name == undefined) {
-            wx.showToast({
-                title: '姓名不能为空',
-                image: "/images/icon-warning.png",
-            });
-            return;
-        }
-        if (!mobile || mobile == undefined) {
-            wx.showToast({
-                title: '账号不能为空',
-                image: "/images/icon-warning.png",
-            });
-            return;
-        } 
-        var bank = e.detail.value.bank;
-
-        if(!bank || bank == ''){
-            if(bank == ''){
-                wx.showToast({
-                title: '开户行不能为空',
-                image: "/images/icon-warning.png",
-            });
-                return;
-            }
-        }
+        // if (cash > cash_max) {
+        //     wx.showToast({
+        //         title: "提现金额不能超过" + cash_max + "元",
+        //         image: "/images/icon-warning.png",
+        //     });
+        //     return;
+        // }
+        // if (cash < parseFloat(page.data.share_setting.min_money)) {
+        //     wx.showToast({
+        //         title: "提现金额不能低于" + page.data.share_setting.min_money + "元",
+        //         image: "/images/icon-warning.png",
+        //     });
+        //     return;
+        // }
+        // var name = e.detail.value.name;
+        // var mobile = e.detail.value.mobile;
+        // if (!name || name == undefined) {
+        //     wx.showToast({
+        //         title: '姓名不能为空',
+        //         image: "/images/icon-warning.png",
+        //     });
+        //     return;
+        // }
+        // if (!mobile || mobile == undefined) {
+        //     wx.showToast({
+        //         title: '账号不能为空',
+        //         image: "/images/icon-warning.png",
+        //     });
+        //     return;
+        // }
+        // var bank = e.detail.value.bank;
+        //
+        // if(!bank || bank == ''){
+        //     if(bank == ''){
+        //         wx.showToast({
+        //         title: '开户行不能为空',
+        //         image: "/images/icon-warning.png",
+        //     });
+        //         return;
+        //     }
+        // }
         console.log(e.detail.value)
         var selected = page.data.selected;
         if (selected != 0 && selected != 1 && selected !=3) {
@@ -146,10 +146,10 @@ Page({
             method: 'POST',
             data: {
                 cash: cash,
-                name: name,
-                mobile: mobile,
-                bank: bank,
-                pay_type: selected,
+                // name: name,
+                // mobile: mobile,
+                // bank: bank,
+                // pay_type: selected,
                 scene: 'CASH',
                 form_id: e.detail.formId,
             },

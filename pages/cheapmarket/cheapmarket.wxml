@@ -4,8 +4,8 @@
     <view class="top-menu-box">
       <navigator class="item" url="/pages/coupon-merchant/index">优惠券商</navigator>
       <navigator class="item" url="/pages/businmarket/businmarket">交易市场</navigator>
-      <navigator class="item" url="/pages/cheapmarket/cheapmarket">优惠商场</navigator>
-      <navigator class="item active" url="/pages/fair/fair" open-type="switchTab">账户详情</navigator>
+      <navigator class="item active" url="/pages/cheapmarket/cheapmarket" open-type="switchTab">优惠商场</navigator>
+      <navigator class="item " url="/pages/fair/fair" >账户详情</navigator>
     </view>
   </view>
   <view class="block-area">
@@ -23,7 +23,7 @@
   </view>
   <view class="block-area">
     <view class="title-box">
-    <image class="personal-icons" mode="widthFix"  src="../../images/score.png"></image>
+      <image class="personal-icons" mode="widthFix"  src="../../images/score.png"></image>
       欢乐豆
     </view>
     <view class="text-number">
@@ -36,7 +36,7 @@
   </view>
   <view class="block-area">
     <view class="title-box">
-    <image class="personal-icons" mode="widthFix"  src="../../images/coupon.png"></image>
+      <image class="personal-icons" mode="widthFix"  src="../../images/coupon.png"></image>
       优惠券
     </view>
     <view class="text-number">
