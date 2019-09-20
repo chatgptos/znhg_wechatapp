@@ -21,7 +21,7 @@
                     <text class="color-blue margin-l5">升级</text>
 
                 </view>
-                <view class='noWarp'>
+                <view class='noWarp'  bindtap="integral">
                     <text class="color-70 uesrName">{{user_info.nickname}}</text>
                     <view class='margin-l10'>
                         <image class="money-icon" src="../../Img/jifen.png" mode="cover"></image>

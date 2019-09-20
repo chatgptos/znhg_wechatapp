@@ -59,13 +59,13 @@ Page({
                         mobile = cash_last['mobile'];
                     }
                     page.setData({
-                        price: res.data.price.price,
+                        price: res.data.price.integral,
                         cash_max_day: res.data.cash_max_day,
                         pay_type: res.data.pay_type,
                         selected: selected,
                         name: name,
                         mobile: mobile,
-                        bank:res.data.bank,
+                        bank: res.data.bank,
                     });
                 }
             }
@@ -130,7 +130,7 @@ Page({
         // }
         console.log(e.detail.value)
         var selected = page.data.selected;
-        if (selected != 0 && selected != 1 && selected !=3) {
+        if (selected != 0 && selected != 1 && selected != 3) {
             wx.showToast({
                 title: '请选择提现方式',
                 image: "/images/icon-warning.png",
@@ -141,36 +141,146 @@ Page({
             title: "正在提交",
             mask: true,
         });
+        // app.request({
+        //     url: api.share.apply,
+        //     method: 'POST',
+        //     data: {
+        //         cash: cash,
+        //         // name: name,
+        //         // mobile: mobile,
+        //         // bank: bank,
+        //         // pay_type: selected,
+        //         scene: 'CASH',
+        //         form_id: e.detail.formId,
+        //     },
+        //     success: function (res) {
+        //         wx.hideLoading();
+        //         wx.showModal({
+        //             title: "提示",
+        //             content: res.msg,
+        //             showCancel: false,
+        //             success: function (e) {
+        //                 if (e.confirm) {
+        //                     if (res.code == 0) {
+        //                         wx.redirectTo({
+        //                             url: '/pages/cash-detail/cash-detail',
+        //                         })
+        //                     }
+        //                 }
+        //             }
+        //         });
+        //     }
+        // });
+        //提交订单
         app.request({
-            url: api.share.apply,
-            method: 'POST',
+            url: api.order.submit,
+            method: "post",
             data: {
-                cash: cash,
-                // name: name,
-                // mobile: mobile,
-                // bank: bank,
-                // pay_type: selected,
-                scene: 'CASH',
-                form_id: e.detail.formId,
+                address_id: 9,
+                offline: 1,
+                address_name:'平台积分',
+                address_mobile:'13236390680',
+                form: 1,
+                goods_info: '{"goods_id":"23","attr":[{"attr_group_id":1,"attr_group_name":"规格","attr_id":1,"attr_name":"默认"}],"num":' + cash + '}',
+                use_integral: 2,
+                // access_token: '7CVgdYqZ8ZMGqeSo-AgOgVl6S67NN98P',
+                store_id: 1,
             },
             success: function (res) {
-                wx.hideLoading();
-                wx.showModal({
-                    title: "提示",
-                    content: res.msg,
-                    showCancel: false,
-                    success: function (e) {
-                        if (e.confirm) {
+                if (res.code == 0) {
+                    setTimeout(function () {
+                        wx.hideLoading();
+                    }, 1000);
+                    setTimeout(function () {
+                        page.setData({
+                            options: {},
+                        });
+                    }, 1);
+                    var order_id = res.data.order_id;
+
+                    //获取支付数据
+                    app.request({
+                        url: api.order.pay_data,
+                        data: {
+                            order_id: order_id,
+                            pay_type: 'WECHAT_PAY',
+                        },
+                        success: function (res) {
                             if (res.code == 0) {
-                                wx.redirectTo({
-                                    url: '/pages/cash-detail/cash-detail',
-                                })
+                                //发起支付
+                                wx.requestPayment({
+                                    timeStamp: res.data.timeStamp,
+                                    nonceStr: res.data.nonceStr,
+                                    package: res.data.package,
+                                    signType: res.data.signType,
+                                    paySign: res.data.paySign,
+                                    success: function (e) {
+                                        if (res.code == 0) {
+                                            wx.redirectTo({
+                                                url: '/pages/cash-detail/cash-detail',
+                                            })
+                                        }
+                                    },
+                                    fail: function (e) {
+                                    },
+                                    complete: function (e) {
+                                        if (e.errMsg == "requestPayment:fail" || e.errMsg == "requestPayment:fail cancel") {//支付失败转到待支付订单列表
+                                            wx.showModal({
+                                                title: "提示",
+                                                content: "订单尚未支付",
+                                                showCancel: false,
+                                                confirmText: "确认",
+                                                success: function (res) {
+                                                    if (res.confirm) {
+                                                        wx.redirectTo({
+                                                            url: "/pages/order/order?status=0",
+                                                        });
+                                                    }
+                                                }
+                                            });
+                                            return;
+                                        }
+                                        if (e.errMsg == "requestPayment:ok") {
+                                            if (page.data.goods_card_list.length > 0) {
+                                                page.setData({
+                                                    show_card: true
+                                                });
+                                            } else {
+                                                wx.redirectTo({
+                                                    url: "/pages/order/order?status=-1",
+                                                });
+                                            }
+                                            return;
+                                        }
+                                        wx.redirectTo({
+                                            url: "/pages/order/order?status=-1",
+                                        });
+                                    },
+                                });
+                                return;
+                            }
+                            if (res.code == 1) {
+                                wx.showToast({
+                                    title: res.msg,
+                                    image: "/images/icon-warning.png",
+                                });
+                                return;
                             }
                         }
-                    }
-                });
+                    });
+                }
+                if (res.code == 1) {
+                    wx.hideLoading();
+                    wx.showToast({
+                        title: res.msg,
+                        image: "/images/icon-warning.png",
+                    });
+                    return;
+                }
             }
         });
+
+
     },
 
     showCashMaxDetail: function () {
