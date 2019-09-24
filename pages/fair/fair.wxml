@@ -14,11 +14,11 @@
       积分
     </view>
     <view class="text-number">
-      <text class="integral-motto">{{integral}}</text>
+      <text class="integral-motto">{{user_info.integral}}</text>
     </view>
     <view class="btn-group">
-      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>充值</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>提现</button>
+      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap' bindtap="integral">充值</button>
+      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap' bindtap="integral">提现</button>
     </view>
   </view>
   <view class="block-area">
@@ -43,8 +43,8 @@
       <text class="integral-motto">{{coupon}}</text>
     </view>
     <view class="btn-group">
-      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>获取</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>出售</button>
+      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap' bindtap="card">获取</button>
+      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap' bindtap="card">出售</button>
     </view>
   </view>
 </view>

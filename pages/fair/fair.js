@@ -9,10 +9,9 @@ Page({
      * 页面的初始数据
      */
     data: {
-        "integral": 500,
-        "score": 300,
-        "coupon": 600
-
+        "integral": 0,
+        "score": 0,
+        "coupon": 0
         // motto: 'Hello World',
         // userInfo: {},
         // hasUserInfo: false,
@@ -97,6 +96,11 @@ Page({
         wx.navigateTo({
             url: '/pages/card/card',
         })
-    }
+    },
+    integral: function () {
+        wx.navigateTo({
+            url: '/pages/recharge-integral/index',
+        })
+    },
 });
 

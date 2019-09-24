@@ -11,17 +11,34 @@ Page({
     data: {
         "integral": 500,
         "score": 300,
-        "coupon": 600
-
-        // motto: 'Hello World',
-        // userInfo: {},
-        // hasUserInfo: false,
-        // canIUse: wx.canIUse('button.open-type.getUserInfo'),
-        // list:[
-        //     { text: "成为商家" }, { text: "我的好友" }, { text: "我的二维码" }, { text: "意见反馈" }, { text: "系统设置" },
-        // ]
+        "coupon": 600,
+        contact_tel: "",
+        show_customer_service: 0,
+        user_center_bg: "/images/img-user-bg.png",
+        user_info:{},
     },
 
+    //点击切换
+    clickTab: function (e) {
+        var that = this;
+        if (this.data.currentTab === e.target.dataset.current) {
+            return false;
+        } else {
+            that.setData({
+                currentTab: e.target.dataset.current
+            })
+        }
+    },
+    clickTab2: function (e) {
+        var that = this;
+        if (this.data.clickTab2 === e.target.dataset.current) {
+            return false;
+        } else {
+            that.setData({
+                clickTab2: e.target.dataset.current
+            })
+        }
+    },
     /**
      * 生命周期函数--监听页面加载
      */
@@ -89,12 +106,12 @@ Page({
         });
     },
     member: function () {
-        wx.navigateTo({
+        wx.redirectTo({
             url: '/pages/member/member',
         })
     },
     card: function () {
-        wx.navigateTo({
+        wx.redirectTo({
             url: '/pages/card/card',
         })
     }

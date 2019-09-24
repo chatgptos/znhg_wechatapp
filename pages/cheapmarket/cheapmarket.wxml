@@ -1,4 +1,3 @@
-<include src="/commons/navbar/navbar"/>
 <view class="container">
   <view class="tCenter">
     <view class="top-menu-box">
@@ -8,43 +7,69 @@
       <navigator class="item " url="/pages/fair/fair" >账户详情</navigator>
     </view>
   </view>
-  <view class="block-area">
-    <view class="title-box">
-      <image class="personal-icons" mode="widthFix"  src="../../images/integral.png"></image>
-      积分
+
+
+  <view class='scroll-bar'>
+    <view class="item-scroll-bar {{clickTab2==0?'active':''}}" data-current="0" bindtap="clickTab2">
+      推荐
     </view>
-    <view class="text-number">
-      <text class="integral-motto">{{integral}}</text>
+    <view class="item-scroll-bar {{clickTab2==1?'active':''}}" data-current="1" bindtap="clickTab2">
+      生活
     </view>
-    <view class="btn-group">
-      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>充值</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>提现</button>
+    <view class="item-scroll-bar {{clickTab2==2?'active':''}}" data-current="2" bindtap="clickTab2">
+      百货
+    </view>
+    <view class="item-scroll-bar {{clickTab2==3?'active':''}}" data-current="3" bindtap="clickTab2">
+      美食
+    </view>
+    <view class="item-scroll-bar {{clickTab2==4?'active':''}}" data-current="4" bindtap="clickTab2">
+      保健
+    </view>
+    <view class="item-scroll-bar {{clickTab2==5?'active':''}}" data-current="5" bindtap="clickTab2">
+      品质
+    </view>
+    <view class="item-scroll-bar {{clickTab2==6?'active':''}}" data-current="6" bindtap="clickTab2">
+      健身
+    </view>
+    <view class="item-scroll-bar {{clickTab2==7?'active':''}}" data-current="7" bindtap="clickTab2">
+      化妆
     </view>
   </view>
-  <view class="block-area">
-    <view class="title-box">
-      <image class="personal-icons" mode="widthFix"  src="../../images/score.png"></image>
-      欢乐豆
+
+
+  <view class='wrap'>
+    <view class='li'>
+      <view class='img'>
+        <image src='../../Img/money-2.png'></image>
+      </view>
+      <view class='info'></view>
+      <view class='price'></view>
     </view>
-    <view class="text-number">
-      <text class="integral-motto">{{score}}</text>
+    <view class='li'>
+      <view class='img'>
+        <image src='../../Img/money-2.png'></image>
+      </view>
+      <view class='info'>
+        深交所谴责冯鑫深交所谴责冯鑫深交所谴责冯鑫深交所谴责冯鑫
+      </view>
+      <view class='price'>
+        <view class='pri-icon'>
+          <image src='../../Img/money-2.png'></image>
+        </view>
+        <view class='num'>89</view>
+      </view>
     </view>
-    <view class="btn-group">
-      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>获取</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>兑换</button>
+    <view class='li'>
+      <view class='img'>
+      </view>
+      <view class='info'></view>
+      <view class='price'></view>
     </view>
-  </view>
-  <view class="block-area">
-    <view class="title-box">
-      <image class="personal-icons" mode="widthFix"  src="../../images/coupon.png"></image>
-      优惠券
-    </view>
-    <view class="text-number">
-      <text class="integral-motto">{{coupon}}</text>
-    </view>
-    <view class="btn-group">
-      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>获取</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>出售</button>
+    <view class='li'>
+      <view class='img'>
+      </view>
+      <view class='info'></view>
+      <view class='price'></view>
     </view>
   </view>
 </view>

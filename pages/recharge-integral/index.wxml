@@ -1,3 +1,4 @@
+<include src="/commons/navbar/navbar"/>
 <form report-submit='true' bindsubmit="formSubmit">
   <view class="block">
     <view class="user-money">账户剩余积分：{{price}}元</view>

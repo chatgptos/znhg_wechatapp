@@ -1,0 +1,24 @@
+<view class='main'>
+    <view class='title'>
+        <text>消息列表</text>
+    </view>
+    <view wx:for="{{array}}" class='list-item'>
+        <view class='name'>
+            <view class='info'>
+                <view class='left'>
+                    <image src="{{item.imgurl}}" />
+                </view>
+                <view class='right'>
+                    {{item.name}}
+                </view>
+            </view>
+            <view class='time'>
+                {{item.date}}
+            </view>
+        </view>
+        <view class='message'>
+            {{item.msg}}
+        </view>
+    </view>
+</view>
+
