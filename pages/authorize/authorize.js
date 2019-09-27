@@ -23,7 +23,7 @@ Page({
                             getApp().login();
                             //跳转
                             wx.navigateTo({
-                                url: '/pages/index/index',
+                                url: '/pages/user/user',
                             })
                         }
                     });
@@ -61,7 +61,7 @@ Page({
         getApp().login();
         //跳转
         wx.navigateTo({
-            url: '/pages/index/index',
+            url: '/pages/user/user',
         })
         // console.log('插入登录的用户')
         // var user_info = wx.getStorageSync("user_info");

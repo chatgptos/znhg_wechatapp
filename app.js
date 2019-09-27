@@ -190,7 +190,7 @@ App({
     bindParent: function (object) {
         if (object.parent_id == "undefined" || object.parent_id == 0)
             return;
-        // console.log("Try To Bind Parent With User Id:" + object.parent_id);
+        console.log("Try To Bind Parent With User Id:" + object.parent_id);
         var user_info = wx.getStorageSync("user_info");
         var share_setting = wx.getStorageSync("share_setting");
         if (share_setting.level > 0) {
