@@ -22,9 +22,10 @@ Page({
                             // that.queryUsreInfo();
                             getApp().login();
                             //跳转
-                            wx.navigateTo({
+                            wx.redirectTo({
                                 url: '/pages/user/user',
                             })
+                            this.onLoad();
                         }
                     });
                 }
@@ -32,13 +33,18 @@ Page({
         })
     },
     bindGetUserInfo: function (e) {
-        // console.log(e)
+
+        var parent_id = wx.getStorageSync('parent_id');
+        console.log(parent_id)
         // console.log(e.detail.userInfo)
+
+
         if (e.detail.userInfo) {
             //用户按了允许授权按钮
             // app.globalData.userInfo = e.detail.userInfo;
             //插入登录的用户的相关信息到数据库
             let that = this;
+            getApp().login();
             that.queryUsreInfo();
             // that.insertUserInfo(e);
         } else {
@@ -58,11 +64,19 @@ Page({
     },
     //获取用户信息接口
     queryUsreInfo: function () {
-        getApp().login();
         //跳转
-        wx.navigateTo({
+        //绑定
+        // app.getParent_id();
+        //绑定
+        // var parent_id = wx.getStorageSync('parent_id');
+        // if (parent_id != 0) {
+        //     getApp().bindParent({parent_id: parent_id});
+        // }
+        // app.pageOnLoad(this);
+        wx.redirectTo({
             url: '/pages/user/user',
-        })
+        });
+        this.onLoad();
         // console.log('插入登录的用户')
         // var user_info = wx.getStorageSync("user_info");
         // console.log(user_info)

@@ -43,6 +43,17 @@ App({
             }
         });
     },
+    /**
+     * 绑定获取parent_id
+     */
+    getParent_id: function () {
+        //绑定
+        var parent_id = wx.getStorageSync('parent_id');
+        if (parent_id != 0) {
+            page.loginBindParent({parent_id: parent_id});
+        }
+
+    },
 
     login: function () {
         var _this = this;
@@ -185,6 +196,7 @@ App({
         if (access_token == '') {
             return true;
         }
+        console.log(object);
         getApp().bindParent(object);
     },
     bindParent: function (object) {
@@ -383,7 +395,7 @@ App({
     //登录成功后不刷新的页面
     loginNoRefreshPage: [
         'pages/index/index',
-        'pages/user/user',
+        // 'pages/user/user',
     ],
 
 });
