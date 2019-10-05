@@ -1,0 +1,312 @@
+/**index.wxss**/
+.display {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.space-between {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.display-1 {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
+
+.bgfff {
+    background: #fff;
+}
+
+.mall {
+    background: #F8F8F8;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.mall-icon {
+    width: 15px;
+    height: 16px;
+}
+
+.search-box {
+    width: 80%;
+    position: relative;
+}
+
+.search {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    left: 10px;
+    top: 6px;
+}
+
+.search-input {
+    height: 32px;
+    text-align: center;
+}
+
+.titleData {
+    font-size: 16px;
+    color: #303331;
+    margin-bottom: 5px;
+    width: 64px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.line {
+    width: 24px;
+    border: 1px solid #606266;
+}
+
+.title-tab {
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+}
+
+.block {
+    display: block;
+}
+
+.none {
+    display: none;
+}
+
+.swiper {
+    height: 200px;
+    background: #fff;
+}
+
+.swiper-img {
+    width: 100%;
+    height: 165px;
+}
+
+.margin-tp10 {
+    margin: 10px 0;
+}
+
+.margin-tp20 {
+    margin: 20px 0;
+}
+
+.margin-lr5 {
+    margin: 0 5px;
+}
+
+.time-title {
+    font-size: 18px;
+    margin: 20px 0 10px 0;
+}
+
+.color-30 {
+    color: #303331;
+}
+
+.color-red {
+    color: #A92112;
+}
+
+.bg-red {
+    background: #A92112;
+}
+
+.color-fff {
+    color: #fff;
+}
+
+.time-icon {
+    width: 14px;
+    height: 14px;
+}
+
+.time {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.product {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background: #F8F8F8;
+}
+
+.productData {
+    width: 49%;
+    background: #fff;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 1px 1px #F8F8F8;
+    text-align: center;
+}
+
+.product-img {
+    width: 100%;
+    height: 190px;
+}
+
+.product-text text {
+    line-height: 28px;
+}
+
+.newPrice {
+    font-size: 16px;
+}
+
+.oldPrice {
+    text-decoration: line-through;
+}
+
+.yen {
+    font-size: 12px;
+}
+
+.product-yen {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.color-99 {
+    color: #909399;
+}
+
+.raise-active {
+    color: #606266
+}
+
+.raise-title {
+    height: 42px;
+    line-height: 42px;
+    background: #fff;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.title-icon {
+    width: 20px;
+    height: 4px;
+}
+
+.raiseSwiper {
+    margin-bottom: 14px;
+}
+
+.raiseh2 {
+    padding: 16px 20px 0 20px;
+}
+
+.raiseh2 text {
+    font-size: 18px;
+}
+
+.raiseList {
+    border-radius: 10px;
+    background: #fff;
+    padding: 0 5px;
+}
+
+.raiseList-img {
+    width: 120px;
+    height: 120px;
+    margin-right: 20px;
+}
+
+.raiseList-icon {
+    width: 13px;
+    height: 13px;
+}
+
+.raiseList-item {
+    padding: 20px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+}
+
+.raiseList-conent-title {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+.color-cc {
+    color: #909399;
+}
+
+.color-fc {
+    color: #C0C4CC;
+}
+
+.raiseList-conent-text {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px 10px 10px;
+}
+
+.progress {
+    border-radius: 10px;
+}
+
+.raiseList-new-conent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.raiseList-new-item {
+    width: 48%;
+    background: #FCFCFC;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.raiseList-new-img {
+    width: 100%;
+    height: 145px;
+}
+
+.border-rignt {
+    border-right: 1px solid #eeeeee;
+    padding-right: 5px;
+}
+
+.padding-lr10 {
+    padding: 0 10px;
+}
+
+.padding-b10 {
+    padding-bottom: 10px;
+}
+
+.img-position {
+    text-align: center;
+    background: rgba(255, 255, 255, .9)
+}
+
+.bg-FC {
+    background: #FCFCFC;
+}

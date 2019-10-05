@@ -1,0 +1,299 @@
+/**index.wxss**/
+.container {
+    height: 100%;
+    background-color: rgb(248, 248, 248)
+}
+
+.top-menu-box {
+    /*display: inline-block;*/
+    /*padding: 6rpx;*/
+    /*margin-bottom: 18rpx;*/
+    /*background-color: #f0f0f0;*/
+    /*border-radius: 32rpx;*/
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    border-radius: 50px;
+    background:rgba(255,255,255,.4);
+
+    margin:0 5px;
+}
+
+.top-menu-box .item {
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    /*padding: 14rpx 20rpx;*/
+    /*border-radius: 28rpx;*/
+    /*font-size: 28rpx;*/
+
+    font-size: 9px;
+    border-radius: 40px;
+    height: 40px;
+    line-height: 40px;
+    padding:0 15px;
+}
+
+.top-menu-box .item {
+    /*background-color: #fff;*/
+    /*color: #303133;*/
+    background-color: white;
+    color: #303133;
+}
+
+
+.item.active{
+    color: black;
+    background: linear-gradient(to bottom, #F1F1F1 , #F1F1F1);
+}
+/*.active{*/
+/*color: white;*/
+/*background: white;*/
+/*}*/
+
+.block-area {
+    padding: 20rpx 20px;
+    border-radius: 20rpx;
+    margin: 0 20rpx 30rpx;
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    font-size: 36rpx;
+    font-weight: bold;
+}
+
+.text-number {
+    font-size: 70rpx;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30rpx
+}
+
+.personal-icons {
+    width: 40rpx;
+    height: auto;
+    margin-right: 16rpx;
+}
+
+/**app.wxss**/
+page {
+    height: 100%;
+}
+
+.container {
+    height: 100%;
+    padding: 20rpx 0;
+    box-sizing: border-box;
+}
+
+.block-area {
+    background-color: #fff;
+}
+
+.btn-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20rpx 0
+}
+
+.binggan-btn {
+    display: inline-block;
+    padding: 16rpx 60rpx;
+    border-radius: 50rpx;
+    font-size: 34rpx;
+    line-height: normal;
+    transition: all .3s ease
+}
+
+.binggan-primary-btn {
+    background-color: #fff;
+    border: 1px solid rgb(104, 195, 178);
+    color: rgb(104, 195, 178);
+}
+
+.binggan-confirm-btn {
+    background-color: rgb(104, 195, 178);
+    color: #fff;
+}
+
+.binggan-btn::after {
+    border: 0
+}
+
+.binggan-btn-tap {
+    opacity: .72;
+}
+
+.binggan-primary-btn.binggan-btn-tap {
+    background-color: #f3f3f3;
+}
+
+.tCenter {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+/* pages/shou/cheapmarket-new.wxss */
+
+.container{
+    width: 100%;
+}
+.container .top-bar{
+    display: flex;
+    height: 44px;
+    background: #F8F8F8;
+    line-height: 44px;
+    border-radius: 22px;
+    padding: 0 18px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+}
+.container .top-bar .title-item{
+    height: 40px;
+    line-height: 40px;
+    padding: 0 17rpx;
+    border-radius: 20px;
+    font-size: 14px;
+}
+.container .top-bar .background-fff{
+    background: #ffffff;
+}
+.container .scroll-bar{
+    font-size: 15px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height: 40px;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    line-height: 30px;
+    margin-top: 10px;
+    padding: 0 5px;
+}
+.container .scroll-bar::-webkit-scrollbar{
+    display: none;
+
+}
+.container .scroll-bar .item-scroll-bar{
+    height: 30px;
+    display: inline-block;
+    position: relative;
+    margin-right: 13px;
+}
+.container .scroll-bar .item-scroll-bar.active{
+    font-size: 16px;
+    color: #68C3B2;
+}
+.container .scroll-bar .active:after{
+    content: '';
+    display: block;
+    width: 100%;
+    height: 2px;
+    position: absolute;
+    bottom: 1px;
+    left: 0;
+    background: #68C3B2;
+    border-radius: 1px;
+}
+.wrap{
+    font-size: 0;
+    margin: 0 7rpx;
+    margin-top: 30rpx;
+}
+.wrap .li{
+    width: 229rpx;
+    height: 336rpx;
+    display: inline-block;
+    font-size: 14px;
+    background: #FFFFFF;
+    vertical-align: top;
+    margin: 0 8rpx;
+    margin-bottom: 8rpx;
+}
+.wrap .li .img{
+    width: 100%;
+    height: 220rpx;
+    background: #FFFFFF;
+}
+.wrap .li .img image{
+    width: 100%;
+    height: 100%;
+}
+.wrap .li .info{
+    font-size: 22rpx;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    line-height: 30rpx;
+    padding: 0 8rpx;
+    height: 60rpx;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.wrap .li .price{
+    display: flex;
+    float: right;
+    padding: 0 8rpx;
+    margin-top: 8rpx;
+
+}
+.wrap .li .pri-icon{
+    width: 44rpx;
+    height: 32rpx;
+    /* background: url(../../Img/money-2.png) no-repeat center; */
+    background-size: contain;
+}
+.wrap .li .pri-icon image{
+    max-width: 100%;
+    max-height: 100%;
+}
+.wrap .li .price .num{
+    color: #F8F8F8;
+    font-size: 24rpx;
+    margin-left: 10rpx;
+}
+
+.menu-item {
+    width: 20%;
+    float: left;
+    text-align: center;
+    padding-top: 8px;
+    font-size: 20rpx;
+}
+.menu-item2{
+    border-right:none;
+}
+
+.img {
+    width: 22px;
+    height: 21px;
+    display: block;
+    margin: auto;
+}
+
+.clear {
+    clear: both;
+}
+
+.tab-bar {
+    background-color:rgb(243, 243, 243);
+    opacity: .8;
+    position: fixed;
+    width: 100%;
+    /* padding: 0px 2%; */
+}
+
+

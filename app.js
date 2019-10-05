@@ -43,6 +43,17 @@ App({
             }
         });
     },
+    /**
+     * 绑定获取parent_id
+     */
+    getParent_id: function () {
+        //绑定
+        var parent_id = wx.getStorageSync('parent_id');
+        if (parent_id != 0) {
+            page.loginBindParent({parent_id: parent_id});
+        }
+
+    },
 
     login: function () {
         var _this = this;
@@ -93,9 +104,9 @@ App({
                         },
                         fail: function (res) {
                             console.log('getUserInfo')
-                            wx.navigateTo({
-                                url: '/pages/authorize/authorize',
-                            })
+                            // wx.navigateTo({
+                            //     url: '/pages/authorize/authorize',
+                            // })
                             wx.hideLoading();
                             // getApp().getauth({
                             //     content: '需要获取您的用户信息授权，请到小程序设置中打开授权',
@@ -185,12 +196,13 @@ App({
         if (access_token == '') {
             return true;
         }
+        console.log(object);
         getApp().bindParent(object);
     },
     bindParent: function (object) {
         if (object.parent_id == "undefined" || object.parent_id == 0)
             return;
-        // console.log("Try To Bind Parent With User Id:" + object.parent_id);
+        console.log("Try To Bind Parent With User Id:" + object.parent_id);
         var user_info = wx.getStorageSync("user_info");
         var share_setting = wx.getStorageSync("share_setting");
         if (share_setting.level > 0) {
@@ -319,8 +331,8 @@ App({
     },
 
     setPageNavbar: function (page) {
-        // console.log('----setPageNavbar----');
-        // console.log(page);
+        console.log('----setPageNavbar----');
+        console.log(page);
         var navbar = wx.getStorageSync('_navbar');
 
         if (navbar) {
@@ -339,6 +351,8 @@ App({
         function setNavbar(navbar) {
             var in_navs = false;
             var route = page.route || (page.__route__ || null);
+            console.log(route);
+            //判断当前也页面是否有bar
             for (var i in navbar.navs) {
                 if (navbar.navs[i].url === "/" + route) {
                     navbar.navs[i].active = true;
@@ -347,6 +361,7 @@ App({
                     navbar.navs[i].active = false;
                 }
             }
+            in_navs = true;//所有的页面都显示只要加载了头部的文件
             if (!in_navs)
                 return;
             page.setData({ _navbar: navbar });
@@ -380,7 +395,7 @@ App({
     //登录成功后不刷新的页面
     loginNoRefreshPage: [
         'pages/index/index',
-        'pages/user/user',
+        // 'pages/user/user',
     ],
 
 });
