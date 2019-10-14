@@ -45,7 +45,7 @@ Page({
             //插入登录的用户的相关信息到数据库
             let that = this;
             getApp().login();
-            that.queryUsreInfo();
+            that.queryUsreInfo(e.detail.userInfo);
             // that.insertUserInfo(e);
         } else {
             //用户按了拒绝按钮
@@ -63,7 +63,7 @@ Page({
         }
     },
     //获取用户信息接口
-    queryUsreInfo: function () {
+    queryUsreInfo: function (e) {
         //跳转
         //绑定
         // app.getParent_id();
@@ -73,6 +73,9 @@ Page({
         //     getApp().bindParent({parent_id: parent_id});
         // }
         // app.pageOnLoad(this);
+
+        console.log('插入登录的用户')
+        console.log(e)
         wx.redirectTo({
             url: '/pages/user/user',
         });

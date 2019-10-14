@@ -48,7 +48,7 @@
         </view>
         <view class="display info-list-right-item">
           <view  class="display-1">
-            <image src="../../Img/money-2.png" class="info-list-right-icon"></image>
+            <image src="../../Img/doudou.png" class="info-list-right-icon"></image>
             <text>推荐人数</text>
           </view>
           <view  class="display">
@@ -58,7 +58,7 @@
           </view>
         </view>
         <view  class="display">
-            <button class="application">立即申请</button>
+            <button class="application"  bindtap="apply" data-index="{{index}}" disabled="{{buttonClicked}}" >{{buttonName}}</button>
           </view>
       </view>
     </view>

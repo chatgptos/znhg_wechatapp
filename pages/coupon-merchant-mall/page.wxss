@@ -1,0 +1,260 @@
+/* page/index.wxss */
+
+page {
+  background-color: #EEEEEE;
+}
+.wrap .top{
+  display: flex;
+  align-items: center;
+  padding: 0 38rpx;
+  box-sizing: border-box;
+  position: relative;
+  margin-top: 10rpx;
+}
+.wrap .top .left{
+  width: 20rpx;
+  height: 34rpx;
+  background: red;
+}
+.wrap .top .icon{
+  width: 68rpx;
+  height: 68rpx;
+  border-radius: 50%;
+  background: blue;
+  margin-left: 32rpx;
+  margin-right: 20rpx;
+}
+.wrap .top .focus-on{
+  width: 136rpx;
+  height:60rpx;
+  background: #68C3B2;
+  border-radius: 30rpx;
+  line-height: 60rpx;
+  position: absolute;
+  right: 56rpx;
+  text-align: center;
+  color: #ffffff;
+  font-size: 28rpx;
+}
+.wrap .card{
+  padding:  34rpx 32rpx 42rpx 32rpx;
+  background: #ffffff;
+  margin: 0 14rpx;
+  border-radius: 16rpx;
+  margin-top: 14rpx;
+}
+.wrap .card .card-top{
+  display: flex;
+}
+.wrap .card .card-top .img{
+   width: 100rpx;
+   text-align: center;
+}
+.wrap .card .card-top .img image{
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 50%;
+  background: red;
+}
+.wrap .card .card-top .img text{
+  font-size: 24rpx;
+  color: #909399;
+  line-height: 42rpx;
+}
+.wrap .card .card-top .txt{
+  font-size: 30rpx;
+  width: 550rpx;
+  margin-left: 30rpx;
+}
+.wrap .card .message{
+  display: flex;
+  font-size: 24rpx;
+  color: #909399;
+  justify-content: flex-end;
+  align-items: center;
+}
+.wrap .card .message .li{
+  font-size: 0;
+}
+.wrap .card .message .li:nth-child(1){
+  margin-right: 10rpx;
+}
+.wrap .card .message image{
+  width: 28rpx;
+  height: 28rpx;
+  background: red;
+}
+.wrap .card .message text{
+  line-height: 28rpx;
+  margin-left: 5rpx;
+  font-size: 24rpx;
+  vertical-align: top;
+  display: inline-block;
+}
+.wrap .card .con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 62rpx;
+}
+.wrap .card .con .msg-icon{
+  width: 48rpx;
+  height: 34rpx;
+  background: red;
+  margin-right: 24rpx;
+}
+.wrap .card .con .msg-center{
+  width: 38rpx;
+  height: 38rpx;
+  background: #68C3B2;
+  margin: 0 80rpx;
+}
+.wrap .card  .info{
+  font-size: 30rpx;
+  line-height: 42rpx;
+  color: #303133;
+  margin-top: 64rpx;
+}
+.wrap .message-board{
+  padding: 0 40rpx;
+  margin: 0 14rpx;
+  background: #ffffff;
+  border-radius: 16rpx;
+  margin-top: 20rpx;
+  padding-top: 32rpx;
+}
+.wrap .message-board .list{
+  margin-top: 50rpx;
+}
+.wrap .message-board .li .info{
+  padding-bottom: 62rpx;
+  border-bottom: 1rpx solid 3#FAFAFA;
+}
+.wrap .message-board .li .info .title{
+  display: flex;
+  align-items: center;
+}
+.wrap .message-board .li .info image{
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: red;
+  margin-right: 14rpx;
+  
+}
+.wrap .message-board .li .info .title text{
+  color: #303133;
+  font-size: 24rpx;
+  font-weight: bold;
+
+}
+.wrap .message-board .li .info  .msg{
+  padding-left: 70rpx;
+  color: #303133;
+  font-size: 26rpx;
+}
+.wrap .message-board .li .info  .time{
+  padding-left: 70rpx;
+  color: #909399;
+  font-size: 20rpx;
+}
+.wrap .message-board .li .item{
+  padding-left: 70rpx;
+}
+/*底部*/
+.bottom-fixed{
+  position: fixed;
+  width: 100%;
+  height: 98rpx;
+  display: flex;
+  padding: 0 42rpx;
+  bottom: 0;
+  background: #FAFAFA;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  left: 0;
+
+}
+.bottom-fixed .show{
+  display: flex;
+}
+.bottom-fixed .show .it{
+  width: 44rpx;
+  margin-right: 62rpx;
+}
+
+.bottom-fixed .show .it image{
+  width: 44rpx;
+  height: 44rpx;
+  background: yellow;
+}
+.bottom-fixed .show .it .no{
+  background: red;
+}
+.bottom-fixed .show .it text{
+  font-size: 20rpx;
+}
+.bottom-fixed .btn{
+  color: #ffffff;
+  background: #FF5E62;
+  height: 60rpx;
+  width: 160rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+}
+.over{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+}
+.bounced{
+  width: 90%;
+  height: 360rpx;
+  background: #ffffff;
+  border-radius: 5%;
+  position: fixed;
+  left: 5%;
+  top: calc(50% - 180rpx);
+  padding: 0 100rpx;
+  box-sizing: border-box;
+  padding-top: 53rpx;
+}
+.bounced .title{
+  height: 38rpx;
+  line-height: 38rpx;
+  text-align: center;
+  color: #303133;
+
+}
+.bounced .conmain{
+  margin-top: 36rpx;
+  line-height: 40rpx;
+  min-height: 132rpx;
+  font-size: 30rpx;
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+}
+.footer .btn{
+    width: 150rpx;
+    height: 48rpx;
+    text-align: center;
+    border-radius: 24rpx;
+    color: #ffffff;
+    font-size: 24rpx;
+    line-height: 48rpx;
+}
+.footer .left{
+  background: #303133;
+}
+.footer .right{
+  background: #68C3B2;
+}
