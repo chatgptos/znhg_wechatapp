@@ -1,0 +1,102 @@
+/* pages/market/market.wxss */
+
+.container {
+  height: 100%;
+  padding: 20rpx;
+  background-color: rgb(248, 248, 248);
+  font-size: 26rpx;
+}
+.strong{font-weight: 700;}
+.whiteWrap{background-color: #fff;}
+.specialWrap{padding:0 10rpx 10rpx;}
+
+.banner-box {
+  position: relative;
+  width: 100%;
+  margin: 8rpx auto;
+}
+
+.banner-con {
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 20rpx;
+}
+
+.swiper-image {
+  height: 100%;
+  width: 100%;
+}
+
+.slide-image {
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
+.badge {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  float: right;
+  font-size: xx-small;
+  border-top: 120rpx solid #71c1b2;
+  border-right: 120rpx solid transparent;
+  z-index: 999;
+}
+
+.badge .texts {
+  width: 100rpx;
+  height: 60rpx;
+  transform: rotate(-45deg);
+  transform-origin: bottom center;
+  position: absolute;
+  top: -106rpx;
+  left: 22rpx;
+  z-index: 999;
+  font-size: 24rpx;
+  text-align: center;
+  color: #fff;
+}
+.htitle{display:block;font-size: 32rpx;font-weight: 700;margin: 30rpx 0 16rpx;}
+.price{font-size: 36rpx;font-weight: 600;margin-top: 20rpx;}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  margin-top: 18rpx;
+  margin-bottom: 24rpx;
+}
+
+.progress-bar .progress-bar-sm {
+  width: 100%;
+  height: 18rpx;
+  background-color: #f0f0f0;
+  border-radius: 10rpx;
+  overflow: hidden;
+}
+
+.progress-bar .progress-bar-sm .done {
+  height: 100%;
+  background-color: #30d5a3;
+  border-radius: 10rpx;
+}
+.progress-bar .text-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  color:#626367;
+  margin-top: 18rpx;
+}
+.progress-bar .text-info .left-text{color: #68d2a5;}
+.tips{padding: 20rpx;background-color: #eeeeee;font-size: 26rpx;color:#818181;border-radius: 12rpx;}
+.tips .strong{color:#a44031;}
+.limit-desc{font-size: 30rpx;font-weight: 700;margin: 26rpx 0 16rpx;}
+.limit-desc .left-text{border-right:4rpx solid #292a2c;padding-right: 12rpx;margin-right: 12rpx;}
+.descriptions{font-size: 26rpx;}
+.thumbnail-box{margin-left: -2%;margin-top: 18rpx;margin-bottom: 18rpx;display: flex;align-items: center}
+.desc-thumbnail{width: 23%;margin-right: 2%;}
+.desc-thumbnail image{display: block;width: 100%;}

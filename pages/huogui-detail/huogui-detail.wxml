@@ -1,0 +1,35 @@
+<!--pages/shop-detail/shop-detail.wxml-->
+<view>
+    <view class='block_3 flex-y-center'>货柜商品</view>
+    <view class='block'>
+        <view class='wrap'>
+            <navigator style="display: inline-table" wx:for="{{goods}}" url='/pages/cheapmarket/details/details?id={{item.id}}'>
+                <view class='li'>
+                    <view class='img'> <image src='{{item.cover_pic}}'></image>
+                    </view>
+                    <view class='info'>  {{item.name}}</view>
+                    <view class='price'>
+                        <view class='pri-icon'>
+                            <image src='../../Img/money-2.png'></image>
+                        </view>
+                        <view class='num'>{{item.coupon}}</view>
+                    </view>
+                    <view class='price'>
+                        <view class='pri-icon'>
+                            <image src='../../Img/jifen.png'></image>
+                        </view>
+                        <view class='num'>{{item.integral}}</view>
+                    </view>
+                </view>
+            </navigator>
+        </view>
+    </view>
+
+
+    <view class='block_3 flex-y-center'>邀请您</view>
+    <view>
+        <a href="" class="button_scan"  bindtap="openDoor" >确认开门</a>
+        <a  wx:if="{{user_info.is_clerk}}" href="" class="button_scan" style="background: #00aeff" bindtap="openDoorBuhuo" >管理员补货</a>
+    </view>
+
+</view>

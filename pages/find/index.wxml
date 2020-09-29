@@ -1,0 +1,60 @@
+<include src="/commons/navbar/navbar"/>
+
+<scroll-view scroll-x="true" class="scroll-view-x" scroll-with-animation="true" scroll-left="{{scrollLeft}}" wx:if="{{cat_show=='1'}}">
+    <view class="scroll-view-item {{cid==0 ? 'active' : ''}}" data-id='0' bindtap="switchNav">
+      推荐
+    </view>
+    <block wx:for="{{cat}}" wx:key="unique">
+      <view data-id="{{item.id}}" class="scroll-view-item {{cid==item.id ? 'active' : ''}}"  bindtap="switchNav">
+        {{item.name}}
+      </view>
+    </block>
+  </scroll-view>
+<view class="content">
+      <view class="left">
+        <block wx:for="{{goods_list}}" wx:key="">
+          <template is="item" data="{{...item}}" wx:if="{{index%2==0}}"></template>
+        </block>
+      </view>
+      <view class="right">
+        <block wx:for="{{goods_list}}" wx:key="">
+          <template is="item" data="{{...item}}" wx:if="{{index%2==1}}"></template>
+        </block>
+      </view>
+    </view>
+<!--  下面是一个模块 -->
+<template name="item">
+  <view class="item">
+    <view wx:if="{{goods.is_favorite && goods.is_favorite==1}}">
+    <image class="play {{show_video == index?hide:''}}" src="/images/zhibozhong.svg"data-index='{{index}}' bindtap="play"></image>
+    <text class="zhibo-title">直播中</text></view>
+    <view  wx:else>
+    <image class="play {{show_video == index?hide:''}}" src="/images/video-play.png"data-index='{{index}}' bindtap="play"></image> 
+     </view>
+
+
+    <image class="item-img" src="{{pic_url}}" ></image>
+    <view class="item-title-box">
+      <navigator url="url" class="item-title">{{title}}</navigator>  
+    </view>
+    <view class="name">
+      <image class="item-ava" src="{{pic_url}}"></image>    
+      <text class="name-title">{{name}}</text>
+      <view class="heart_">
+        
+        <view wx:if="{{goods.is_favorite && goods.is_favorite==1}}" bindtap="favoriteRemove"
+                  class="flex-grow-0 flex-y-center bar-bottom-btn">
+                <view>
+                    <image src="/images/icon-favorite-active.png"></image> 
+                </view>
+            </view>
+            <view wx:else bindtap="favoriteAdd" class="flex-grow-0 flex-y-center bar-bottom-btn">
+                <view>
+                    <image src="/images/icon-favorite.png"></image> 
+                </view>
+            </view>
+        <text>{{heart_num}}</text>
+      </view>
+    </view>
+  </view> 
+</template>

@@ -3,8 +3,8 @@
   <view class="tCenter">
     <view class="top-menu-box">
       <navigator class="item" url="/pages/coupon-merchant/index">优惠券商</navigator>
-      <navigator class="item" url="/pages/businmarket/businmarket">交易市场</navigator>
-      <navigator class="item" url="/pages/cheapmarket/cheapmarket">优惠商场</navigator>
+      <navigator class="item" url="/pages/coupon-merchant-mall-list/index">券池兑换</navigator>
+      <navigator class="item" url="/pages/cheapmarket/index/cheapmarket">优惠商场</navigator>
       <navigator class="item active" url="/pages/fair/fair" open-type="switchTab">账户详情</navigator>
     </view>
   </view>
@@ -14,11 +14,11 @@
       积分
     </view>
     <view class="text-number">
-      <text class="integral-motto">{{user_info.integral}}</text>
+      <text class="integral-motto">{{integral}}</text>
     </view>
     <view class="btn-group">
       <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap' bindtap="integral">充值</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap' bindtap="integral">提现</button>
+      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap' bindtap="cash">提现</button>
     </view>
   </view>
   <view class="block-area">
@@ -27,11 +27,11 @@
       欢乐豆
     </view>
     <view class="text-number">
-      <text class="integral-motto">{{score}}</text>
+      <text class="integral-motto">{{hld}}</text>
     </view>
     <view class="btn-group">
-      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>获取</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap'>兑换</button>
+      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap' bindtap="exchangeHld">获取</button>
+      <!--<button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap' bindtap="exchangeJf">兑换</button>-->
     </view>
   </view>
   <view class="block-area">
@@ -43,8 +43,54 @@
       <text class="integral-motto">{{coupon}}</text>
     </view>
     <view class="btn-group">
-      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap' bindtap="card">获取</button>
-      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap' bindtap="card">出售</button>
+      <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap' bindtap="getcard"  disabled="{{buttonClickedbuy}}" >获取</button>
+      <button class="binggan-btn binggan-primary-btn" hover-class='binggan-btn-tap' bindtap="sellcard" disabled="{{buttonClickedsell}}" >兑换</button>
+    </view>
+  </view>
+</view>
+
+<!---弹框模板-->
+<view class="over" hidden="{{hiddenmodalput}}"    v-how>
+  <view class="bounced">
+    <view class="title">交换中…</view>
+
+    <view class="conmain" wx:if="{{rechangeType==2}}">
+      <!--充值1 /扣除2-->
+      <input class="search-input bgfff" placeholder="请输入您要多少积分的欢乐豆" placeholder-style='color:#C0C4CC;' bindinput="bindKeyInput"></input>
+      此次交换将花费您{{ duihuanjifen }}积分,得到{{ (duihuanjifen )*10}}个欢乐豆,是否
+      确认继续交换？</view>
+
+    <view class="conmain" wx:elif="{{rechangeType==1}}">
+      <input class="search-input bgfff" placeholder="请输入您要多少积分的欢乐豆" placeholder-style='color:#C0C4CC;' bindinput="bindKeyInput"></input>
+      此次交换将花费您{{ duihuanjifen }}欢乐豆,得到{{ (duihuanjifen )/10}}个积分,是否
+      确认继续交换？</view>
+
+    <view class="conmain" wx:elif="{{rechangeType==3}}">
+      <input class="search-input bgfff" placeholder="请输入您要多少积分的欢乐豆" placeholder-style='color:#C0C4CC;' bindinput="bindKeyInput"></input>
+      此次交换将花费您{{ duihuanjifen }}欢乐豆,得到{{ (duihuanjifen )/10}}个积分,是否
+      确认继续交换？</view>
+
+
+    <view class="conmain" wx:else>
+      <input class="search-input bgfff" placeholder="请输入您要交换的优惠券数量" placeholder-style='color:#C0C4CC;' bindinput="bindKeyInputCard"></input>
+
+      <view class="title">交易:{{ duihuanjifen }}<image class="msg-icon"   src="../../images/coupon.png"></image></view>
+
+      <view class="title">欢乐豆:{{ huanledou }}<image class="msg-icon"   src="../../Img/doudou.png"></image></view>
+
+      <view class="title">手续费:{{ huanledou_charge }}<image class="msg-icon"   src="../../Img/doudou.png"></image></view>
+
+      <view class="title">系统奖励:{{ xtjl }}<image class="msg-icon"   src="../../images/coupon.png"></image></view>
+
+      <view class="title">合计收益:{{ huanledou_total }}<image class="msg-icon"   src="../../Img/doudou.png"></image></view>
+      <view class="title">是否确认继续发布交换？</view>
+      <view class="title"></view>
+
+    </view>
+
+    <view class="footer">
+      <view class="left btn"   bindtap="think" >去想想</view>
+      <view class="right btn" bindtap="sureDo">确认交换</view>
     </view>
   </view>
 </view>

@@ -1,0 +1,14 @@
+
+<include src="/commons/navbar/navbar"/>
+<view class="list flex-row"  >
+  <!--<navigator class="item border-bottom border-between" url='/pages/settlementbonus/details/details?id={{item.id}}'>-->
+    <navigator class="item border-bottom border-between" wx:for="{{goods}}" url='/pages/settlementbonus/submit/submit?id={{item.id}}'>
+    <view class="list-img flex-x-center">
+      <image class="img" src="{{item.cover_pic}}"></image>
+    </view>
+    <view class="flex-x-center list-content">{{item.name}}</view>
+  </navigator>
+
+  <view class="item border-bottom">
+  </view>
+</view>

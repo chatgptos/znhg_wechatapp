@@ -1,0 +1,108 @@
+<!--pages/info-list/info-list.wxml-->
+<view class='list'>
+
+
+    <view wx:if="{{!page}}" class="no-data-tip">  ni来晚啦,他们又把我掏空了</view>
+
+
+    <navigator  data-gid='{{item.id}}'  data-is_ad='{{item.is_ad}}' data-ishongbao='{{item.is_hongbao}}'  data-goods_list='{{goods_list}}' data-key='{{key}}' bindtap="openDoor"  wx:for="{{goods_list}}"wx:for-index="key"  wx:for-item="item">
+        <!--<navigator  url="/pages/goods/goods?id={{item.id}}" open-type="navigate"  wx:for="{{goods_list}}" wx:for-item="item">-->
+
+<!--<view wx:if="{{key%8==5}}">-->
+ <!--<view style="display:{{style_name}}">-->
+		 <!--<ad unit-id="adunit-e95127d428cb1c0c" bindclose="adClose"></ad>-->
+	 <!--</view> -->
+<!--</view>-->
+
+
+        <view wx:if="{{item.is_ad}}">
+            <view style="display:{{style_name}}">
+                <ad unit-id="adunit-e95127d428cb1c0c" bindclose="adClose"></ad>
+            </view>
+        </view>
+
+
+        <view class='li'>
+
+            <view wx:if="{{item.room_id}}">
+            <view class="badge"  >
+                <text class="texts">直播券</text>
+            </view>
+            <view class='left1'>
+                <image src="{{item.pic_url}}"></image>
+                <view class='name'>{{item.name}}</view>
+            </view>
+            </view>
+            <view wx:elif="{{item.article_id}}">
+                <view wx:if="{{!item.room_id}}">
+                    <view class="badge" style="border-top: 120rpx solid #1113;" >
+                        <text class="texts">书虫券</text>
+                    </view>
+                    <view class='left1'>
+                        <image src="{{item.pic_url}}"></image>
+                        <view class='name'>{{item.name}}</view>
+                    </view>
+                </view>
+            </view>
+             <view wx:else>
+                 <view class='left'>
+                     <image src="{{item.pic_url}}"></image>
+                     <view class='name'>{{item.name}}</view>
+                 </view>
+            </view>
+
+
+
+            <view class='right'>
+                <view class='info'>{{item.title}}</view>
+                <view class="con" wx:if="{{item.room_id||item.article_id}}">
+                    <image class="msg-icon"  src="../../images/coupon.png"></image>
+                    <view class="">{{item.num}}
+                    </view>
+                    <image  class="msg-center" src="../../images/jiantou.png"></image>
+                    <image  class="msg-icon" src="../../Img/doudou.png"></image>
+                    <view>{{item.hld}}</view>
+                </view>
+                <view class="{{item.room_id==0 && item.article_id==0 ?'footer':'footer1'}}">
+                    <view class="icon-box-flex" style='width:20px;height: 20px;background:white'>
+
+                        <view wx:if="{{item.is_hongbao==1}}" class='icon-img' style='width:20px;height: 20px;background:white'>
+                            <image src="{{item.avatar_url_hongbao}}" mode="widthFix"  style='width:20px;height: 20px;background:white'/>
+                        </view>
+                        <view wx:else class='icon-img' style='width:23px;height: 20px;background:white'>
+                            <image src="{{item.avatar_url_hongbao1}}" mode="widthFix"  style='width:15px;height: 15px;background:white;border-radius: 38rpx'/>
+                        </view>
+                    </view>
+                    <view class="icon-box-flex">
+                        <view class='icon-img'>
+                            <image src=""></image>
+                        </view>
+                        <view class="icon-desc" wx:if="{{item.want_num > 0}}">火爆指数{{item.want_num}}</view>
+                    </view>
+                    <view class="icon-box-flex">
+                        <view class='icon-img'>
+                            <image src=''></image>
+                        </view>
+                        <view class="icon-desc" bindtap='showPupop'  wx:if="{{item.want_num > 0}}" >贡献度{{item.order_num}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+    </navigator>
+    <!--<popup id="popup" title="小组件" content="哈哈哈" btn_no="没有" btn-ok="学会了" bind:error="_error" bind:success="_success">-->
+    <!--<view></view>-->
+    <!--</popup>-->
+    <!--<observer></observer>-->
+</view>
+<view wx:if="{{is_hongbao==1}}" class="{{isopen?'posi-fixed':'posi-fixed close'}} " bindtap="tabOpen">
+    <text class='dialog-close' decode='true'>&lt;</text>
+
+    <view class="li"> <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId1}}&custom_params={{customParams1}}">券池红包</navigator>
+    </view>
+    <view class="li"><navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId2}}&custom_params={{customParams2}}">裂变红包</navigator>
+    </view>
+
+    <view class="li"><navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{roomId3}}&custom_params={{customParams3}}">暴击红包</navigator>
+    </view>
+</view>

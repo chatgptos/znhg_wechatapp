@@ -1,0 +1,62 @@
+<!--pages/book/order/details.wxml-->
+<view style='padding-bottom:120rpx'>
+    <view class='goods flex-row' bindtap='goToGoodsDetails'>
+        <view class='goods-pic flex-grow-0'>
+                <image src='{{goods.cover_pic}}'></image>
+        </view>
+        <view class='goods-info flex-grow-1 flex-col'>
+                <view class='goods-name flex-grow-1'>
+                        {{goods.name}}
+                </view>
+                <!--<view class='money flex-grow-0 flex-row flex-y-bottom '>-->
+                    <!--<view class='original_price flex-gorw-0'>-->
+                        <!--¥ {{goods.coupon}}-->
+                    <!--</view>-->
+                    <!--<view class='price flex-grow-0'>-->
+                        <!--¥ {{goods.pay_price}}-->
+                    <!--</view>-->
+                <!--</view>-->
+            <view class='wrap'>
+                <view class='li'>
+                    <view class='price'>
+                        <view class='pri-icon'>
+                            <image style="height:30px;width:30px;max-width:100%;max-height:100%;" src='../../../Img/money-2.png'></image>
+                        </view>
+                        <view class='num'>{{goods.coupon}}</view>
+                    </view>
+                    <view class='price'>
+                        <view class='pri-icon'>
+                            <image style="height:30px;width:30px;max-width:100%;max-height:100%;" src='../../../Img/doudou.png'></image>
+                        </view>
+                        <view class='num'>{{goods.integral}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class='goods-right flex-grow-0 flex-y-center'>
+                <image src='/images/img-share-right.png'></image>
+        </view>
+    </view>
+    <view class='order'>
+        <view class='order-title flex-y-center'>
+            奖励信息
+        </view>
+        <view class='order-info'>
+            <view class='order-info-item'>
+                奖励号：{{goods.order_no}}
+            </view>
+            <view class='order-info-item'>
+                申请时间：{{goods.addtime}}
+            </view>
+            <view class='order-info-item' wx:for='{{goods.orderForm}}'>
+                {{item.key}}：{{item.value}}
+            </view>
+        </view>
+    </view>
+</view>
+
+<view class='btn-group flex-row'>
+    <view class='btn-group-item promptly flex-x-center flex-y-cneter' bindtap='nowWriteOff'>
+            确认核销
+    </view>
+</view>
