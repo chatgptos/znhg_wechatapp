@@ -1,0 +1,61 @@
+<!--热门推荐-->
+<view class="container">
+  <view class="whiteWrap">
+    <!-- banner图 -->
+    <view class="banner-box">
+      <!-- 角标 -->
+      <view class="badge">
+        <text class="texts">{{crowdFundingStatus==0?"抢鲜中":"抢鲜结束"}}</text>
+      </view>
+      <view class="banner-con">
+        <swiper indicator-dots="true" autoplay="true" interval="3000" indicator-color="rgba(255, 255, 255, .4)" indicator-active-color="#fff" circular="true" style="height:{{bannerheights[current]}}rpx;" bindchange="bindchange">
+          <block wx:for="{{bannerImgs}}" wx:key="{{index}}">
+            <swiper-item>
+              <image src="{{item}}" mode='aspectFill' class="slide-image" bindload="imageLoad" />
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <!-- 内容区 -->
+    <view class="specialWrap">
+      <text class="htitle">{{product.title}}</text>
+      <text style="font-size:28rpx;color:#494b49">已抢鲜到</text>
+      <view class="price">
+        <text style="font-size:28rpx;color:#494b49;font-weight:normal">￥</text>{{product.current}}</view>
+      <!-- 进度 -->
+      <view class="progress-bar">
+        <view class="progress-bar-sm">
+          <view class="done" style="width:{{product.current/product.total*100+'%'}}"></view>
+        </view>
+        <view class="text-info">
+          <text class="left-text">当前进度{{~~(product.current/product.total*100)}}%</text>
+          <text>当前支持者{{product.persons}}人</text>
+        </view>
+      </view>
+      <!-- 提示 -->
+      <view class="tips">
+        此项目必须在
+        <text class="strong">{{product.dueDate}}</text>前得到
+        <text class="strong">￥{{product.total}}</text>的支持才可成功!剩余{{product.remainDay}}天!
+      </view>
+
+      <view class="limit-desc">
+        <text class="left-text">限额{{product.limit}}份</text>
+        <text>剩余{{product.remaining}}份</text>
+      </view>
+      <text class="descriptions">{{product.description}}</text>
+      <view class="thumbnail-box">
+        <view class="desc-thumbnail" wx:for="{{product.thumbnails}}" wx:key="{{index}}">
+          <image src="{{item}}" mode="widthFix"></image>
+        </view>
+      </view>
+      <view>配送方式：<text class="strong">{{product.distributionWay}}</text></view>
+      <view>预计发货时间：<text class="strong">项目抢鲜成功后<text style="color:#9a2b1b">{{product.distributionWait}}</text>天内</text></view>
+      <view class="tCenter" style="margin: 38rpx 0 20rpx">
+        <button class="binggan-btn binggan-confirm-btn" hover-class='binggan-btn-tap'>支持<text style="font-size:28rpx">￥</text><text class="strong">89</text></button>
+      </view>
+      
+    </view>
+  </view>
+</view>

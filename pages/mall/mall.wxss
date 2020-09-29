@@ -92,7 +92,7 @@
 }
 
 .margin-tp10 {
-    margin: 10px 0;
+    margin: 1px 0;
 }
 
 .margin-tp20 {
@@ -147,6 +147,7 @@
     align-items: center;
     justify-content: space-between;
     background: #F8F8F8;
+    margin-bottom:50px;
 }
 
 .productData {

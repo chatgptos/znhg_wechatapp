@@ -9,6 +9,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
+  margin-bottom:50px;
 }
 .display-1{
   display: flex;
@@ -81,7 +82,7 @@
 }
 .info-list-title{
   background: #fff;
-  height: 56px;
+  height:39px;
   margin-top: 10px;
   display: flex;
   align-items: center;
@@ -146,3 +147,94 @@
   color:#303133;
 }
 
+
+
+/*福利池*/
+
+
+
+application-fl{
+  color: #fff;
+  background: #FF7D64;
+  border-radius: 30px;
+  width: 150px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+  margin:10px 0;
+}
+
+.info-list-right-item-fl{
+  /*height: 50px;*/
+  border-bottom: 1px solid #FAFAFA;
+  padding: 8px 10px;
+}
+
+.info-list-right-title-flc{
+  font-size: 12px;
+  text-align: center;
+  /*line-height: 40px;*/
+  padding:16px;
+
+  color: white;
+  background: #FF9966;
+  border: 1px solid #FAFAFA;
+}
+
+.info-list-right-title-fl{
+  font-size: 12px;
+  height: 20px;
+  text-align: center;
+  /*line-height: 40px;*/
+  padding:16px;
+
+  border: 1px solid #FAFAFA;
+}
+
+
+.application-info-list-right-title-fl{
+  /*color: #fff;*/
+  /*background: #FF7D64;*/
+  border-radius: 30px;
+  width: 50px;
+  height: 25px;
+  text-align: center;
+  line-height: 35px;
+  margin:5px 0;
+  border-bottom: 1px solid #FAFAFA;
+}
+
+.display-info-list-right-title-fl{
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.info-list-right-item-fuli{
+  height: 20px;
+  border-bottom: 1px solid #FAFAFA;
+  /*padding: 10px 10px;*/
+}
+
+
+
+
+/*向下的箭头 抽奖*/
+.arrow-bottom {
+  font-size: 0;
+  line-height: 0;
+  border-width: 10px;
+  border-color: red;
+  border-bottom-width: 0;
+  border-style: dashed;
+  border-top-style: solid;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+
+
+
+.round-index{display:inline-block;color:rgb(237, 100, 96);
+  border: 3rpx solid rgb(237, 100, 96);
+  border-radius: 36rpx;padding: 8rpx 20rpx;
+  text-align: center;font-weight: bold;}

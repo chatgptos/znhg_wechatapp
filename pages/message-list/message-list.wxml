@@ -1,24 +1,53 @@
 <view class='main'>
-    <view class='title'>
-        <text>消息列表</text>
-    </view>
-    <view wx:for="{{array}}" class='list-item'>
-        <view class='name'>
-            <view class='info'>
-                <view class='left'>
-                    <image src="{{item.imgurl}}" />
+
+    <block wx:if="{{show_no_data_tip}}">
+        <view class='title'>
+            <text>暂无信息</text>
+        </view>
+    </block>
+    <block wx:else>
+        <view class='title'>
+            <text>系统消息</text>
+        </view>
+        <view wx:for="{{cash_list}}" class='list-item'>
+            <view class='name'>
+                <view class='info'>
+                    <view class='left'>
+                        <image src="../../images/znxflogo.jpg" />
+                    </view>
+                    <view class='right'>
+                        {{item.price}}
+                    </view>
                 </view>
-                <view class='right'>
-                    {{item.name}}
+                <view class='time'>
+                    {{item.addtime}}
                 </view>
             </view>
-            <view class='time'>
-                {{item.date}}
+            <view class='message'>
+                {{item.status}}
             </view>
         </view>
-        <view class='message'>
-            {{item.msg}}
-        </view>
-    </view>
+    </block>
+    <!--<view class='title'>-->
+        <!--<text>消息列表</text>-->
+    <!--</view>-->
+    <!--<view wx:for="{{array}}" class='list-item'>-->
+        <!--<view class='name'>-->
+            <!--<view class='info'>-->
+                <!--<view class='left'>-->
+                    <!--<image src="{{item.imgurl}}" />-->
+                <!--</view>-->
+                <!--<view class='right'>-->
+                    <!--{{item.name}}-->
+                <!--</view>-->
+            <!--</view>-->
+            <!--<view class='time'>-->
+                <!--{{item.date}}-->
+            <!--</view>-->
+        <!--</view>-->
+        <!--<view class='message'>-->
+            <!--{{item.msg}}-->
+        <!--</view>-->
+    <!--</view>-->
 </view>
 

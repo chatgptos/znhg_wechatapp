@@ -1,0 +1,51 @@
+<include src="/commons/navbar/navbar"/>
+
+<view class="container">
+  <!--<view class="tCenter">-->
+    <!--<view class="top-menu-box">-->
+      <!--<navigator class="item" url="/pages/coupon-merchant/index">优惠券商</navigator>-->
+      <!--<navigator class="item" url="/pages/coupon-merchant-mall-list/index">券池奖励</navigator>-->
+      <!--<navigator class="item active" url="/pages/settlementbonus/index/settlementbonus" open-type="switchTab">优惠商场</navigator>-->
+      <!--<navigator class="item " url="/pages/fair/fair" >账户详情</navigator>-->
+    <!--</view>-->
+  <!--</view>-->
+
+
+
+  <scroll-view scroll-x="true" class="scroll-view-x" scroll-with-animation="true" scroll-left="{{scrollLeft}}" wx:if="{{cat_show=='1'}}">
+    <view class="scroll-view-item {{cid==0 ? 'active' : ''}}" data-id='0' bindtap="switchNav">
+      推荐
+    </view>
+    <block wx:for="{{cat}}" wx:key="unique">
+      <view data-id="{{item.id}}" class="scroll-view-item {{cid==item.id ? 'active' : ''}}"  bindtap="switchNav">
+        {{item.name}}
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class='wrap'>
+    <navigator style="display: inline-table" wx:for="{{goods}}" url='/pages/settlementbonus/details/details?id={{item.id}}'>
+
+
+    <view class='li'>
+      <view class='img'> <image src='{{item.cover_pic}}'></image>
+      </view>
+      <view class='info'>  {{item.name}}</view>
+      <view class='price'>
+        <view class='pri-icon'>
+          <image src='../../../Img/money-2.png'></image>
+        </view>
+        <view class='num'>{{item.coupon}}</view>
+      </view>
+      <view class='price'>
+      <view class='pri-icon'>
+        <image src='../../../Img/jifen.png'></image>
+      </view>
+      <view class='num'>{{item.integral}}</view>
+    </view>
+    </view>
+    </navigator>
+
+
+  </view>
+</view>

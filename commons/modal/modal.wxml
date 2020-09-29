@@ -1,0 +1,13 @@
+<!---弹框模板-->
+<view class="over" hidden="{{hiddenmodalput}}"    v-how>
+    <view class="bounced">
+        <view class="title">交换中…</view>
+        <view class="conmain">
+            此次交换将花费您{{num}}欢乐豆是否
+            确认继续交换？</view>
+        <view class="footer">
+            <view class="left btn"   bindtap="think" >去想想</view>
+            <view class="right btn" bindtap="sureDo">确认交换</view>
+        </view>
+    </view>
+</view>

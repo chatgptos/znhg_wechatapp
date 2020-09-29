@@ -1,0 +1,208 @@
+/* pages/info-list/info-list.wxss */
+page {
+  background-color: #EEEEEE;
+}
+.list{
+  margin: 0 12rpx;
+  margin-top: 20rpx;
+}
+.list .li{
+  width: 100%;
+  height: 160rpx;
+  background: #ffffff;
+  border-radius: 5rpx;
+  display: flex;
+  padding: 16rpx 0;
+  box-sizing: border-box;
+  margin-bottom: 25rpx;
+}
+.list .li .left{
+  width: 152rpx;
+  height: 100%;
+  font-size: 20rpx;
+  text-align: center;
+}
+
+
+.list .li .left image{
+  width: 76rpx;
+  height: 76rpx;
+  /*background: blue;*/
+  margin: 0 auto;
+  border-radius: 38rpx;
+}
+.list .li .left .name{
+  text-align: center;
+  color: #909399;
+}
+.list .li .right{
+  width: 100%;
+  height: 100%;
+}
+.list .li .right .info{
+  color: #303133;
+  font-size: 28rpx;
+  width: 500rpx;
+  font-weight: bold;
+  line-height: 40rpx;
+}
+.list .li .right .footer{
+  display: flex;
+  float: right;
+  margin-top: 10rpx;
+}
+.list .li .right .footer .icon-box-flex{
+  display: flex;
+  align-items: center;
+  margin-right: 19rpx;
+}
+.list .li .right .footer .icon-box-flex:nth-child(1){
+  margin-right: 40rpx;
+}
+.list .li .right .footer .icon-box-flex .icon-img{
+  width: 24rpx;
+  height: 24rpx;
+  background: #68C3B2;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-right: 8rpx;
+}
+.list .li .right .footer .icon-desc{
+  font-size: 24rpx;
+  color: #909399;
+}
+
+
+
+.posi-fixed{
+  height: 106rpx;
+  background: linear-gradient(#68C3B2,#FF9966);
+  position: fixed;
+  right: 0;
+  bottom: 200rpx;
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition-duration:0.8s;
+}
+.posi-fixed.close{
+  right: -510rpx;
+}
+.posi-fixed .dialog-close{
+  width: 58rpx;
+  text-align: center;
+}
+.posi-fixed .li{
+  width: 140rpx;
+  height: 56rpx;
+  color: #303133;
+  background:#ffffff;
+  border-radius: 28rpx;
+  margin-right: 30rpx;
+  font-size: 24rpx;
+  line-height: 56rpx;
+  text-align: center;
+}
+
+
+
+
+
+.badge {
+  float: left;
+  font-size: xx-small;
+  border-top: 120rpx solid #71c1b2;
+  border-right: 120rpx solid transparent;
+  margin-left: 5px;
+}
+
+.badge .texts {
+  width: 100rpx;
+  height: 60rpx;
+  transform: rotate(-45deg);
+  transform-origin: bottom center;
+  position: absolute;
+  left: 29rpx;
+  z-index: 999;
+  font-size: 18rpx;
+  text-align: center;
+  color: #fff;
+  margin-top: -49px;
+  float: right;
+}
+
+
+.list .li .left1{
+  width: 152rpx;
+  height: 100%;
+  font-size: 20rpx;
+  text-align: center;
+}
+
+.list .li .left1 image{
+  width: 76rpx;
+  height: 76rpx;
+  margin-left: -44px;
+  border-radius: 38rpx;
+  float: left;
+  position: absolute;
+  margin-top: 10px; 
+}
+.list .li .left1 .name{
+  text-align: center;
+  color: #909399;
+  position: absolute;
+  margin: 45px 14px;
+}
+
+
+.con .msg-icon{
+  width: 48rpx;
+  height: 34rpx;
+  /*background: red;*/
+  margin-right: 24rpx;
+}
+
+.con .msg-center{
+  width: 38rpx;
+  height: 38rpx;
+  /*background: #68C3B2;*/
+  margin: 0 30rpx;
+}
+.con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:60%
+}
+
+
+.list .li .right .footer1{
+  display: flex;
+  float: right;
+  margin-top: -29rpx;
+}
+
+.list .li .right .footer1 .icon-box-flex{
+  display: flex;
+  align-items: center;
+  margin-right: 19rpx;
+}
+.list .li .right .footer1 .icon-box-flex:nth-child(1){
+  margin-right: 40rpx;
+}
+.list .li .right .footer1 .icon-box-flex .icon-img{
+  width: 24rpx;
+  height: 24rpx;
+  background: #68C3B2;
+  border-radius: 12rpx;
+  overflow: hidden;
+  margin-right: 8rpx;
+}
+.list .li .right .footer1 .icon-desc{
+  font-size: 24rpx;
+  color: #909399;
+}

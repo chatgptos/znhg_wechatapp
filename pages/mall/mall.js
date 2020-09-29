@@ -1,14 +1,16 @@
 //index.js
 //获取应用实例
 var api = require('../../api.js');
-const app = getApp()
+var app = getApp()
 var interval = new Object();
 Page({
     data: {
         cat_list: [],
         sub_cat_list_scroll_top: 0,
-        titleData: ['商城商品', "预售商品", "众筹商品"],
-        titleActive: 2,
+        // titleData: ['商城商品', '预售商品', '众筹商品'],
+        titleData: ['商城商品', "预售商品"],
+        // titleData: ['商城商品'],
+        titleActive: 0,
         swiper: [
             '../../Img/bg1.jpg', '../../Img/2.jpg', '../../Img/bg1.jpg',
         ],
@@ -124,21 +126,35 @@ Page({
                 current_cat: null,
             });
         }
-        app.request({
-            url: api.default.cat_list,
-            success: function (res) {
-                if (res.code == 0) {
-                    page.setData({
-                        cat_list: res.data.list,
-                        current_cat: null,
-                    });
-                    wx.setStorageSync("cat_list", res.data.list);
-                }
-            },
-            complete: function () {
-                wx.stopPullDownRefresh();
-            }
+
+//
+        //获取变量
+        // var navbar = wx.getStorageSync('_navbar');
+        console.log(this.data._navbar)
+
+        page.setData({
+            titleData: this.data._navbar.mall.titleData,
+            titleActive: this.data._navbar.mall.titleActive,
         });
+
+
+
+
+
+        // console.log(navbar)
+
+        // app.request({
+        //     url: api.user.index,
+        //     success: function (res) {
+        //         if (res.code == 0) {
+        //             page.setData(res.data);
+        //             wx.setStorageSync('pages_user_user', res.data);
+        //             wx.setStorageSync("share_setting", res.data.share_setting);
+        //             wx.setStorageSync("user_info", res.data.user_info);
+        //         }
+        //     }
+        // });
+
     },
 
     catItemClick: function (e) {
@@ -194,14 +210,92 @@ Page({
 
     //点击切换
     clickTitle: function (e) {
-        var that = this;
+        var page = this;
         if (this.data.titleActive === e.currentTarget.dataset.index) {
             return false;
         } else {
-            that.setData({
+            page.setData({
                 titleActive: e.currentTarget.dataset.index
             })
         }
+
+        if(page.data.titleActive == 1){
+            // app.request({
+            //     url: api.bookmall.cat_list,
+            //     success: function (res) {
+            //         if (res.code == 0) {
+            //             page.setData({
+            //                 cat_list: res.data.list,
+            //                 current_cat: null,
+            //             });
+            //             wx.setStorageSync("cat_list", res.data.list);
+            //         }
+            //     },
+            //     complete: function () {
+            //         wx.stopPullDownRefresh();
+            //     }
+            // });
+            app.request({
+                url: api.bookmall.index,
+                success: function (res) {
+                    if (res.code == 0) {
+                        // page.setData(res.data);
+                        page.setData({
+                            bookmall_seckill: res.data.bookmall_seckill,
+                            crowdc_seckill: res.data.crowdc_seckill,
+                            module_list: res.data.module_list,
+                            banner_list: res.data.banner_list,
+                        });
+                        page.seckillTimer();
+                        console.log(page.data);
+                    }
+                },
+                complete: function () {
+                    wx.stopPullDownRefresh();
+                }
+            });
+        } else if(page.data.titleActive == 2){
+            app.request({
+                url: api.crowdc.index,
+                success: function (res) {
+                    if (res.code == 0) {
+                        // page.setData(res.data);
+                        page.setData({
+                            bookmall_seckill: res.data.bookmall_seckill,
+                            module_list: res.data.module_list,
+                            banner_list: res.data.banner_list,
+                            crowdc_seckill: res.data.crowdc_seckill,
+                        });
+                        page.seckillTimer1();
+                        console.log(page.data);
+                    }
+                },
+                complete: function () {
+                    wx.stopPullDownRefresh();
+                }
+            });
+        }
+
+        // else {
+        //     app.request({
+        //         url: api.user.index,
+        //         success: function (res) {
+        //             if (res.code == 0) {
+        //                 page.setData(res.data);
+        //                 wx.setStorageSync('pages_user_user', res.data);
+        //                 wx.setStorageSync("share_setting", res.data.share_setting);
+        //                 wx.setStorageSync("user_info", res.data.user_info);
+        //             }
+        //         }
+        //     });
+        //     var cat_list = wx.getStorageSync("cat_list");
+        //     if (cat_list) {
+        //         page.setData({
+        //             cat_list: cat_list,
+        //             current_cat: null,
+        //         });
+        //     }
+        // }
     },
     //点击切换
     clickraiseTab: function (e) {
@@ -213,6 +307,68 @@ Page({
                 raiseTab: e.currentTarget.dataset.index
             })
         }
-    }
+    },
+
+
+    getTimesBySecond: function (s) {
+        s = parseInt(s);
+        if (isNaN(s))
+            return {
+                h: '00',
+                m: '00',
+                s: '00',
+            };
+        var _h = parseInt(s / 3600);
+        var _m = parseInt((s % 3600) / 60);
+        var _s = s % 60;
+        return {
+            h: _h < 10 ? ('0' + _h) : ('' + _h),
+            m: _m < 10 ? ('0' + _m) : ('' + _m),
+            s: _s < 10 ? ('0' + _s) : ('' + _s),
+        };
+
+    },
+    seckillTimer: function () {
+        var page = this;
+        if (!page.data.bookmall_seckill || !page.data.bookmall_seckill.rest_time)
+            return;
+        var timer = setInterval(function () {
+            if (page.data.bookmall_seckill.rest_time > 0) {
+                page.data.bookmall_seckill.rest_time = page.data.bookmall_seckill.rest_time - 1;
+            } else {
+                clearInterval(timer);
+                return;
+            }
+            page.data.bookmall_seckill.times = page.getTimesBySecond(page.data.bookmall_seckill.rest_time);
+            page.setData({
+                bookmall_seckill: page.data.bookmall_seckill,
+            });
+        }, 1000);
+
+        console.log(page.data.crowdc_seckill.rest_time)
+
+    },
+    seckillTimer1: function () {
+        var page = this;
+
+        console.log(page.data.crowdc_seckill.rest_time)
+
+        if (!page.data.crowdc_seckill || !page.data.crowdc_seckill.rest_time)
+            return;
+
+        var timer_crowdc = setInterval(function () {
+            if (page.data.crowdc_seckill.rest_time > 0) {
+                page.data.crowdc_seckill.rest_time = page.data.crowdc_seckill.rest_time - 1;
+            } else {
+                clearInterval(timer_crowdc);
+                return;
+            }
+            page.data.crowdc_seckill.times = page.getTimesBySecond(page.data.crowdc_seckill.rest_time);
+            page.setData({
+                crowdc_seckill: page.data.crowdc_seckill,
+            });
+        }, 1000);
+
+    },
 
 })

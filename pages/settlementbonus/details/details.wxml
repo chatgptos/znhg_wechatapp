@@ -1,0 +1,233 @@
+<!--pages/book/details/details.wxml-->
+
+<!--product/product.wxml-->
+<view class="main">
+    <view class="flow">
+        <swiper class="main" autoplay="{{autoplay}}" interval="5000" duration="300" indicator-dots="true"
+                circular="true" bindchange="hide" indicator-active-color="#ff5c5c">
+            <block wx:for="{{goods.pic_list}}">
+                <swiper-item>
+                    <block wx:if="{{goods.video_url}}">
+                        <!-- <view style='width:750rpx;height:700rpx;position:absolute;top:0;left:0;'> -->
+                        <image class="play {{img_hide}}" src="/images/video-play.png" data-url="{{goods.video_url}}"
+                               bindtap="play"></image>
+                        <!-- </view> -->
+                    </block>
+                    <image bindtap="onGoodsImageClick" data-index="{{index}}" class="big-img" src="{{item}}"
+                           mode="aspectFill"/>
+                </swiper-item>
+            </block>
+        </swiper>
+    </view>
+    <view class="v-title">
+        {{goods.name}}
+    </view>
+    <view class="info">
+        <view class="price">
+            <view class='pri-icon'>
+                <image src='../../../Img/money-2.png'></image>
+            </view>
+            券
+            <text>{{goods.coupon}}</text>
+        </view>
+        <view class="new-price">
+            <view class='pri-icon'>
+                <image src='../../../Img/jifen.png'></image>
+            </view>
+            积分
+            <text>{{goods.integral}}</text>
+        </view>
+        <view class="time">
+            <!--<view class="iocn"></view>-->
+            <!--<text>剩余时间 05:23:56</text>-->
+            <!-- <button class='flex-grow-0 flex-col group-share' open-type="share"> -->
+            <button class='flex-grow-0 flex-col group-share' bindtap='showShareModal'>
+                <view class='flex-grow-0'>
+                    <image src='/images/icon-group-share.png'></image>
+                </view>
+                <view class='flex-grow-0 group-share-text'>
+                    分享
+                </view>
+            </button>
+        </view>
+    </view>
+    <view class='flex-row' style='padding-right:24rpx;' wx:if='{{goods.service.length > 1}}'>
+        <view class='goods-service flex-row flex-gorw-1 flex-y-center'>
+            <view class='service-item flex-y-center' wx:for='{{goods.service}}'>
+                <image src='/images/ico-pt-active.png'></image>
+                <view class='flex-grow-1'>
+                    {{item}}
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="v-title">
+        奖励
+    </view>
+    <view class="message">
+        <view class="address">
+            <view class="info">
+                <view class="price">
+                    <view class='pri-icon'>
+                        <image src='../../../Img/money-2.png'></image>
+                    </view>
+                    优惠券
+                    <text>{{goods.return_coupon}}</text>
+                </view>
+                <view class="price">
+                    <view class='pri-icon'>
+                        <image src='../../../Img/money-2.png'></image>
+                    </view>
+                    积分
+                    <text>{{goods.return_integral}}</text>
+                </view>
+
+            </view>
+        </view>
+    </view>
+
+
+    <view class="message" wx:if="{{goods.shopListNum > 0}}">
+        <view class='shop-title flex-y-center'>
+            其他信息
+        </view>
+        <view class='shop-info'>
+
+            <view class="address">
+                <view>
+                    <view class='shop-name'>
+                    </view>
+                    <text>直接奖励| 直直达账户</text>
+                </view>
+                <text class="right"> 已奖励{{sales}}份</text>
+            </view>
+            <view class='shop-time'>
+            </view>
+        </view>
+
+    </view>
+
+    <view class="choose">
+        <view class="tit-info">
+            <view class="such pro-detail">奖励信息</view>
+            <view class="all check-detail">查看详情</view>
+        </view>
+
+
+        <view class="discuss">
+            <view class="title-tag">全网口碑({{comment_count.score_all>999?'999+':comment_count.score_all}})</view>
+            <view class="tag-list">
+                <view class="li">好评({{comment_count.score_3>999?'999+':comment_count.score_3}})</view>
+                <view class="li">中评({{comment_count.score_2>999?'999+':comment_count.score_2}})</view>
+                <view class="li">差评({{comment_count.score_1>999?'999+':comment_count.score_1}})</view>
+            </view>
+            <view class="dis-list" wx:for="{{comment_list}}">
+                <view class="li">
+                    <view class="img">
+                        <image src="{{item.avatar_url}}"></image>
+                    </view>
+                    <view class="name">{{item.nickname}}</view>
+                </view>
+                <view class="info">
+                    {{item.content}}
+                </view>
+                <view class="dis-img" wx:if="{{item.pic_list&&item.pic_list.length>0}}">
+                    <view>
+                        <image bindtap="commentPicView" wx:for="{{item.pic_list}}"
+                               wx:for-index="{{pic_index}}" data-index="{{index}}"
+                               data-pic-index="{{pic_index}}" src="{{item}}" mode="aspectFill"></image>
+                    </view>
+                </view>
+            </view>
+            <view class="more-btn">查看全部口碑</view>
+            <view class="goods-detail">
+                <import src="../../../wxParse/wxParse.wxml"/>
+                <template is="wxParse" data="{{wxParseData:detail.nodes}}"/>
+            </view>
+
+        </view>
+    </view>
+</view>
+
+
+<view class='{{show_attr_picker?"no-scroll":""}}'>
+
+
+    <view class='pt-goods-footer flex-row'>
+        <button class='flex-grow-0 flex-col flex-y-center flex-x-center goods-footer-icon' open-type="contact">
+            <view class='flex-gorw-0 flex-x-center'>
+                <image src='/images/icon-user-kf.png'></image>
+            </view>
+            <view class='flex-gorw-0 flex-x-center'>
+                客服
+            </view>
+        </button>
+        <view class='flex-grow-0 flex-col flex-y-center flex-x-center goods-footer-icon' bindtap='goHome'>
+            <view class='flex-gorw-0 flex-x-center'>
+                <image src='/images/pt-go-home.png'></image>
+            </view>
+            <view class='flex-gorw-0 flex-x-center'>
+                首页
+            </view>
+        </view>
+        <view class='flex-grow-1 flex-y-center flex-x-center group-buy' bindtap="bespeakNow"
+              style='{{goods.is_only==1?"width: 338rpx":""}}'>
+            立即申请
+        </view>
+    </view>
+</view>
+
+<view class="share-modal {{share_modal_active}}">
+    <view class="share-modal-body">
+        <view class="flex-row">
+            <view class="flex-grow-1 flex-x-center">
+                <button open-type="share" class="share-bottom">
+                    <image src="/images/icon-share-friend.png"></image>
+                    <view>分享给朋友</view>
+                </button>
+            </view>
+            <view class="flex-grow-1 flex-x-center">
+                <view bindtap="getGoodsQrcode" class="share-bottom">
+                    <image src="/images/icon-share-qrcode.png"></image>
+                    <view>生成奖励海报</view>
+                </view>
+            </view>
+        </view>
+        <view bindtap="shareModalClose" class="share-modal-close flex-y-center flex-x-center">关闭</view>
+    </view>
+</view>
+
+<view class="goods-qrcode-modal {{goods_qrcode_active}}">
+    <view class="goods-qrcode-body flex-col">
+        <view class="flex-grow-1" style="position: relative">
+            <view style="position: absolute;left: 0;top:0;width: 100%;height: 100%;padding: 100rpx 100rpx 60rpx">
+                <view class="goods-qrcode-box">
+                    <view class="goods-qrcode-loading flex-x-center flex-y-center">
+                        <view class="flex-x-center flex-col">
+                            <image style="width: 150rpx;height: 150rpx" src="/images/loading2.svg"></image>
+                            <view style="color: #888">海报生成中</view>
+                        </view>
+                    </view>
+                    <image bindtap="goodsQrcodeClick"
+                           mode="aspectFill"
+                           class="goods-qrcode {{goods_qrcode?'active':''}}"
+                           data-src="{{goods_qrcode}}"
+                           src="{{goods_qrcode}}"></image>
+                </view>
+            </view>
+        </view>
+        <view class="flex-grow-0 flex-col flex-x-center" style="padding: 0 60rpx 80rpx">
+            <view style="margin-bottom: 20rpx;padding: 0 40rpx">
+                <button wx:if="{{goods_qrcode}}" bindtap="saveGoodsQrcode" style="background: #ff4544;color: #fff;">
+                    保存图片
+                </button>
+                <button wx:else style="opacity: .4">保存图片</button>
+            </view>
+            <view style="color: #888;font-size: 9pt;text-align: center">保存至相册可以分享到朋友圈</view>
+        </view>
+        <view class="goods-qrcode-close" bindtap="goodsQrcodeClose">
+            <image src="/images/icon-close2.png" style="width: 50rpx;height: 50rpx;display: block"></image>
+        </view>
+    </view>
+</view>

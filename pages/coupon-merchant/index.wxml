@@ -1,66 +1,296 @@
 <include src="/commons/navbar/navbar"/>
 <!--coupon-merchant.wxml-->
 <view class="main">
-  <view  class="titleButton color-c">
-      <!--<view class="title-item {{currentTab==0?'background-fff':''}}" data-current="0" bindtap="clickTab">优惠券商</view>-->
-      <!--<view class="title-item {{currentTab==1?'background-fff':''}}" data-current="1" bindtap="clickTab">交易市场</view>-->
-      <!--<view class="title-item {{currentTab==2?'background-fff':''}}" data-current="2" bindtap="clickTab">优惠商场</view>-->
-      <!--<view class="title-item {{currentTab==3?'background-fff':''}}" data-current="3" bindtap="clickTab">账户详情</view>-->
-    <navigator class="title-item active" url="/pages/coupon-merchant/index" open-type="switchTab">优惠券商</navigator>
-    <navigator class="title-item" url="/pages/businmarket/businmarket">交易市场</navigator>
-    <navigator class="title-item" url="/pages/cheapmarket/cheapmarket">优惠商场</navigator>
-    <navigator class="title-item" url="/pages/fair/fair" >账户详情</navigator>
+    <view class="titleButton color-c">
+        <!--<view class="title-item {{currentTab==0?'background-fff':''}}" data-current="0" bindtap="clickTab">优惠券商</view>-->
+        <!--<view class="title-item {{currentTab==1?'background-fff':''}}" data-current="1" bindtap="clickTab">券池兑换</view>-->
+        <!--<view class="title-item {{currentTab==2?'background-fff':''}}" data-current="2" bindtap="clickTab">优惠商场</view>-->
+        <!--<view class="title-item {{currentTab==3?'background-fff':''}}" data-current="3" bindtap="clickTab">账户详情</view>-->
+        <navigator class="title-item active" url="/pages/coupon-merchant/index" open-type="switchTab">优惠券商</navigator>
+        <navigator class="title-item" url="/pages/coupon-merchant-mall-list/index">券池兑换</navigator>
+        <navigator class="title-item" url="/pages/cheapmarket/index/cheapmarket">优惠券商场</navigator>
+        <navigator class="title-item" url="/pages/fair/fair">账户详情</navigator>
 
-  </view>
-  <view class="display background-fff iconList">
-    <view  class="display" wx:for="{{iconList}}">
-      <image src="{{item.icon}}" class="market-icon"></image>
-      <view class="">{{item.text}}</view>
     </view>
-    <view>
-      <text class="market-icon" class="color90">></text>
+    <view class="display background-fff iconList"  bindtap = 'account' >
+        <view class="display">
+            <image src="../../Img/jinxiaoshang.png" class="market-icon"></image>
+            <view class="">{{roleName}}</view>
+        </view>
+        <view class="display">
+            <image src="../../Img/doudou.png" class="market-icon"></image>
+            <view class="">{{userlist.hld}}个</view>
+        </view>
+        <view class="display">
+            <image src="../../Img/money-1.png" class="market-icon"></image>
+            <view class="">{{coupon}}张</view>
+        </view>
+        <!--<view  class="display" wx:for="{{iconList}}">-->
+        <!--<image src="{{item.icon}}" class="market-icon"></image>-->
+        <!--<view class="">{{item.text}}</view>-->
+        <!--</view>-->
+        <view>
+            <text class="market-icon" class="color90">></text>
+        </view>
     </view>
-  </view>
 
-  <view class="nowrap">
-    <view class="info-list-left">
-      <view  class="info-list-title {{currentList==index?'active':''}}" wx:for="{{infoList}}" data-index="{{index}}" bindtap="clickList">
-        <image src="{{currentList==index?item.img:item.icon}}" class="info-list-icon"></image>
-        <view class="">{{item.text}}</view>
-      </view>
+    <form bindsubmit="apply" report-submit="true">
+    <view class="nowrap">
+        <view class="info-list-left">
+            <view class="info-list-title {{currentList==index?'active':''}}" wx:for="{{infoList}}" wx:key='infoList'
+                  data-index="{{index}}" bindtap="clickList">
+                <image src="{{currentList==index?item.img:item.icon}}" class="info-list-icon"></image>
+                <view class="">{{item.text}}</view>
+            </view>
+        </view>
+
+
+        <view class="info-list-right">
+            <view wx:for="{{listDetails}}" class="background-fff {{currentList == index?'block':'none'}}"
+                  data-index="{{index}}">
+
+
+                <!-- 分红权单独处理 -->
+
+                <view wx:if="{{index==3}}">
+
+
+                    <view wx:for="{{initCount}}" wx:key='initCount' wx:for-index="roundIndx"  wx:for-item="roundItem">
+                        <view class="display info-list-right-item-fl">
+                            <text class="round-index">第{{roundIndex[roundIndx]}}轮</text>
+                        </view>
+                        <view class="display info-list-right-item-fl">
+                            <view class="display">
+                                <image src="../../Img/del.png" class="del" data-index="{{roundIndx}}" data-isadd="{{false}}" bindtap="addValue"></image>
+                                <text>{{initCount[roundIndx]}}份</text>
+                                <image src="../../Img/add.png" class="add" data-index="{{roundIndx}}" data-isadd="{{true}}" bindtap="addValue"></image>
+                            </view>
+                            <view class="display-1" style="width:auto">
+                                <image src="../../Img/money-2.png" class="info-list-right-icon"></image>
+                                <text class="color-orange">{{fhq.perOneCoupon}}</text>
+                            </view>
+                        </view>
+                    </view>
+                    <view class="info-list-right-title">
+                        <text>{{youHas}}</text>
+                    </view>
+
+
+                    <view class="display">
+                        <button form-type="submit"  class="application" data-index="{{index}}" disabled="{{buttonClicked}}">
+                            {{buttonName}}
+                        </button>
+                    </view>
+
+
+
+
+
+
+
+                    <!--<view class="info-list-right-title">-->
+                        <!--<text>{{item.title}}</text>-->
+                    <!--</view>-->
+
+
+                    <!--<view class="info-list-right-title-fl">-->
+                        <!--<text>第一轮</text>-->
+                    <!--</view>-->
+
+                    <!--<view class="display info-list-right-item-fuli">-->
+                        <!--<view class="display">-->
+                            <!--<image src="../../Img/del.png" class="del"></image>-->
+                            <!--<text class="color-orange">{{requirelist.card_count_require}}份</text>-->
+                            <!--<image src="../../Img/add.png" class="add"></image>-->
+                        <!--</view>-->
+                        <!--<view class="display-1">-->
+                            <!--<image src="../../Img/money-2.png" class="info-list-right-icon"></image>-->
+                            <!--<text>500</text>-->
+                        <!--</view>-->
+                    <!--</view>-->
+
+
+                    <!--<view class="info-list-right-title-fl">-->
+                        <!--<text>第二轮</text>-->
+                    <!--</view>-->
+
+                    <!--<view class="display info-list-right-item-fuli">-->
+                        <!--<view class="display">-->
+                            <!--<image src="../../Img/del.png" class="del"></image>-->
+                            <!--<text class="color-orange">敬请期待</text>-->
+                            <!--<image src="../../Img/add.png" class="add"></image>-->
+                        <!--</view>-->
+                        <!--<view class="display-1">-->
+                            <!--&lt;!&ndash;<image src="../../Img/money-2.png" class="info-list-right-icon"></image>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<text>500</text>&ndash;&gt;-->
+                        <!--</view>-->
+                    <!--</view>-->
+
+                    <!--<view class="info-list-right-title-fl">-->
+                        <!--<text>第三轮</text>-->
+                    <!--</view>-->
+
+                    <!--<view class="display info-list-right-item-fuli">-->
+                        <!--<view class="display">-->
+                            <!--<image src="../../Img/del.png" class="del"></image>-->
+                            <!--<text class="color-orange">敬请期待</text>-->
+                            <!--<image src="../../Img/add.png" class="add"></image>-->
+                        <!--</view>-->
+                        <!--<view class="display-1">-->
+                            <!--&lt;!&ndash;<image src="../../Img/money-2.png" class="info-list-right-icon"></image>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<text>500</text>&ndash;&gt;-->
+                        <!--</view>-->
+                    <!--</view>-->
+
+
+                </view>
+
+
+                <view wx:elif="{{index==4}}">
+                    <view class="info-list-right-title">
+                        <text>{{item.title}}</text>
+                    </view>
+
+
+                    <view class="info-list-right-title-flc">
+                        <view>
+                            <text>{{flc.title}}</text>
+                        </view>
+                        <view>
+                            <text>福利池:{{flc.fulichi}}元</text>
+                        </view>
+                        <view>
+                            <text>分红时间:{{flc.fulichiTime}}</text>
+                        </view>
+                    </view>
+
+                    <view class="display info-list-right-item-fuli">
+                        <view class="display">
+                            <image src="../../Img/del.png" class="del"></image>
+                            <text class="color-orange">{{flc.fulichiNum}}份</text>
+                            <image src="../../Img/add.png" class="add"></image>
+                        </view>
+                        <view class="display-1">
+                            <image src="../../Img/money-2.png" class="info-list-right-icon"></image>
+                            <text>{{flc.perOneCoupon}}</text>
+                        </view>
+                    </view>
+                    <view class="info-list-right-title">
+                        <text>{{youHas}} </text>
+                    </view>
+
+
+
+                    <view class="display">
+                        <button class="application" bindtap="apply" data-index="{{index}}" disabled="{{buttonClicked}}">
+                            {{buttonName}}
+                        </button>
+                    </view>
+
+                </view>
+
+                <view wx:elif="{{index==5}}" hidden="{{ishidden}}">
+
+                    <view class="display info-list-right-item-fuli">
+                        <view class="display-1">
+                            <image src="../../Img/jiantouxia.png" class="info-list-right-icon"></image>
+                        </view>
+                    </view>
+                    <view  style='width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; position: relative; '>
+
+
+                        <div class="arrow-bottom arrow-box">
+                            <b class="bottom"><i class="bottom-arrow1"></i><i class="bottom-arrow2"></i></b>
+                        </div>
+                        <view animation="{{animationData}}"
+                              style='position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-radius: 50%; border: 30rpx solid gainsboro; overflow: hidden; box-shadow: 0 0 16rpx black;'>
+
+                            <!-- 背景色 -->
+                            <view style='position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 2;'>
+                                <view wx:for='{{awardsList}}' wx:key='{{index}}'
+                                      style='position: absolute; left: 0; top: 0; width: 100%; height: 50%; -webkit-transform-origin: center bottom; transform-origin: center bottom; -webkit-transform: rotate({{item.degree.bg_1}}); transform: rotate({{item.degree.bg_1}}); overflow: hidden;'>
+                                    <view style='width: 50%; height: 100%; -webkit-transform-origin: right bottom; transform-origin: right bottom; -webkit-transform: rotate({{item.degree.bg_2}}); transform: rotate({{item.degree.bg_2}}); background-color: {{item.color}}'></view>
+                                </view>
+                            </view>
+
+                            <!-- 线条 -->
+                            <view style='position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 3;'>
+                                <view wx:for='{{awardsList}}' wx:key='{{index}}'
+                                      style='background-color: white; width: 4rpx; height: 50%; -webkit-transform-origin: center bottom; transform-origin: center bottom; -webkit-transform: rotate({{item.degree.line}}); transform: rotate({{item.degree.line}}); position: absolute; top: 0; left: 0; right: 0; margin: auto;'></view>
+                            </view>
+
+                            <!-- 转盘 -->
+                            <view style='position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: 4;'>
+                                <view wx:for='{{awardsList}}' wx:key='{{index}}'
+                                      style='position: absolute; left: 0; top: 0; right: 0; bottom: 50%; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; -webkit-transform-origin: center bottom; transform-origin: center bottom; -webkit-transform: rotate({{item.degree.item}}); transform: rotate({{item.degree.item}});'>
+                                    <view style='width: 40rpx; height: auto; font-size: 28rpx; color: white; line-height: 34rpx; word-break: break-all; margin-top: 6rpx; text-align: center;'>
+                                        {{item.award}}
+                                    </view>
+                                </view>
+
+                            </view>
+
+                        </view>
+
+                        <!-- 按钮 -->
+                        <!--<view style='width: 80rpx; height: 80rpx; background-color: yellow; font-size: 28rpx; color: #353535; display: flex; align-items: center; justify-content: center; border-radius: 50%; z-index: 5;' bindtap='getLottery'>-->
+                            <!--&lt;!&ndash;<image src="../../images/znxflogo.jpg"></image>&ndash;&gt;-->
+                        <!--</view>-->
+
+                    </view>
+
+
+                    <view class="display">
+                        <button class="application" bindtap="getLotteryClick" data-index="{{index}}"
+                                disabled="{{buttonClicked}}">
+                            {{buttonName}}
+                        </button>
+                    </view>
+
+                </view>
+
+
+                <view wx:else>
+
+                    <view class="info-list-right-title">
+                        <text>{{item.title}}</text>
+                    </view>
+                    <view class="display info-list-right-item">
+                        <view class="display-1">
+                            <image src="../../Img/money-2.png" class="info-list-right-icon"></image>
+                            <text>优惠券</text>
+                        </view>
+                        <view class="display">
+                            <image src="../../Img/del.png" class="del"></image>
+                            <text class="color-orange">{{requirelist.card_count_require}}</text>
+                            <image src="../../Img/add.png" class="add"></image>
+                        </view>
+                    </view>
+                    <view class="display info-list-right-item">
+                        <view class="display-1">
+                            <image src="../../Img/doudou.png" class="info-list-right-icon"></image>
+                            <text>推荐人数</text>
+                        </view>
+                        <view class="display">
+                            <image src="../../Img/del.png" class="del"></image>
+                            <text class="color-orange">{{requirelist.team_count_require}}</text>
+                            <image src="../../Img/add.png" class="add"></image>
+                        </view>
+                    </view>
+                    <view class="display">
+                        <button class="application"  form-type="submit"  data-index="{{index}}" disabled="{{buttonClicked}}">
+                            {{buttonName}}
+                        </button>
+                    </view>
+
+
+                </view>
+
+            </view>
+        </view>
+
+
     </view>
 
-    <view class="info-list-right">
-      <view wx:for="{{listDetails}}" class="background-fff {{currentList == index?'block':'none'}}" data-index="{{index}}">
-        <view class="info-list-right-title">
-          <text>{{item.title}}</text>
-        </view>
-        <view class="display info-list-right-item">
-          <view  class="display-1">
-            <image src="../../Img/money-2.png" class="info-list-right-icon"></image>
-            <text>优惠券</text>
-          </view>
-          <view  class="display">
-            <image src="../../Img/del.png" class="del"></image>
-            <text class="color-orange">220张</text>
-            <image src="../../Img/add.png" class="add"></image>
-          </view>
-        </view>
-        <view class="display info-list-right-item">
-          <view  class="display-1">
-            <image src="../../Img/doudou.png" class="info-list-right-icon"></image>
-            <text>推荐人数</text>
-          </view>
-          <view  class="display">
-            <image src="../../Img/del.png" class="del"></image>
-            <text class="color-orange">220张</text>
-            <image src="../../Img/add.png" class="add"></image>
-          </view>
-        </view>
-        <view  class="display">
-            <button class="application"  bindtap="apply" data-index="{{index}}" disabled="{{buttonClicked}}" >{{buttonName}}</button>
-          </view>
-      </view>
-    </view>
-  </view>
+    </form>
 </view>

@@ -1,0 +1,127 @@
+<include src="/commons/navbar/navbar"/>
+
+<view class="container">
+  <view class="tCenter">
+    <view class="top-menu-box">
+      <navigator class="item" url="/pages/coupon-merchant/index">优惠券商</navigator>
+      <navigator class="item" url="/pages/coupon-merchant-mall-list/index">券池报名</navigator>
+      <navigator class="item active" url="/pages/crowdapply/index/crowdapply" open-type="switchTab">优惠商场</navigator>
+      <navigator class="item " url="/pages/fair/fair" >账户详情</navigator>
+    </view>
+  </view>
+
+
+
+  <!--<scroll-view scroll-x="true" class="scroll-view-x" scroll-with-animation="true" scroll-left="{{scrollLeft}}" wx:if="{{cat_show=='1'}}">-->
+
+  <!--<view class='scroll-bar'>-->
+    <!--<view class="item-scroll-bar {{clickTab2==0?'active':''}}" data-current="0"  data-id='0' bindtap="switchNav">-->
+      <!--推荐-->
+    <!--</view>-->
+    <!--<view class="item-scroll-bar {{clickTab2==1?'active':''}}" data-current="1" data-id="{{item.id}}"  bindtap="switchNav">-->
+      <!--{{item.name}}-->
+    <!--</view>-->
+
+
+  <!--</view>-->
+
+  <!--</scroll-view>-->
+
+
+  <scroll-view scroll-x="true" class="scroll-view-x" scroll-with-animation="true" scroll-left="{{scrollLeft}}" wx:if="{{cat_show=='1'}}">
+    <view class="scroll-view-item {{cid==0 ? 'active' : ''}}" data-id='0' bindtap="switchNav">
+      推荐
+    </view>
+    <block wx:for="{{cat}}" wx:key="unique">
+      <view data-id="{{item.id}}" class="scroll-view-item {{cid==item.id ? 'active' : ''}}"  bindtap="switchNav">
+        {{item.name}}
+      </view>
+    </block>
+  </scroll-view>
+
+
+
+
+
+
+  <view class='wrap'>
+    <navigator style="display: inline-table" wx:for="{{goods}}" url='/pages/crowdapply/details/details?id={{item.id}}'>
+
+      <!--<view class='li'>-->
+      <!--<view class='img'>-->
+      <!--</view>-->
+      <!--<view class='info'>11</view>-->
+      <!--<view class='price'>11</view>-->
+      <!--</view>-->
+
+    <view class='li'>
+      <view class='img'> <image src='{{item.cover_pic}}'></image>
+      </view>
+      <view class='info'>  {{item.name}}</view>
+      <view class='price'>
+        <view class='pri-icon'>
+          <image src='../../../Img/money-2.png'></image>
+        </view>
+        <view class='num'>{{item.coupon}}</view>
+      </view>
+      <view class='price'>
+      <view class='pri-icon'>
+        <image src='../../../Img/jifen.png'></image>
+      </view>
+      <view class='num'>{{item.integral}}</view>
+    </view>
+    </view>
+    </navigator>
+
+
+    <!--<navigator  wx:for="{{goods}}" url='/pages/book/details/details?id={{item.id}}'>-->
+      <!--<view class='goods-pic'>-->
+        <!--<image src='{{item.cover_pic}}'></image>-->
+      <!--</view>-->
+      <!--<view class='goods-title'>-->
+        <!--{{item.name}}-->
+      <!--</view>-->
+      <!--<view class='price flex-row flex-y-center'>-->
+        <!--<view class='money flex-grow-1 flex-y-center' wx:if='{{item.price!=0}}'>-->
+          <!--¥ {{item.price}}-->
+        <!--</view>-->
+        <!--<view class='money flex-grow-1 flex-y-center' wx:if='{{item.price==0}}'>-->
+          <!--免费-->
+        <!--</view>-->
+        <!--<view class='go-book flex-gorw-0 flex-x-center flex-y-center'>-->
+          <!--预约-->
+        <!--</view>-->
+      <!--</view>-->
+    <!--</navigator>-->
+
+    <!--<view class='li'>-->
+      <!--<view class='img'>-->
+        <!--<image src='../../Img/money-2.png'></image>-->
+      <!--</view>-->
+      <!--<view class='info'>-->
+        <!--深交所谴责冯鑫深交所谴责冯鑫深交所谴责冯鑫深交所谴责冯鑫-->
+      <!--</view>-->
+      <!--<view class='price'>-->
+        <!--<view class='pri-icon'>-->
+          <!--<image src='../../Img/money-2.png'></image>-->
+        <!--</view>-->
+        <!--<view class='num'>89</view>-->
+      <!--</view>-->
+    <!--</view>-->
+
+
+
+    <!--<view class='li'>-->
+      <!--<view class='img'>-->
+      <!--</view>-->
+      <!--<view class='info'></view>-->
+      <!--<view class='price'></view>-->
+    <!--</view>-->
+    <!--<view class='li'>-->
+      <!--<view class='img'>-->
+      <!--</view>-->
+      <!--<view class='info'></view>-->
+      <!--<view class='price'></view>-->
+    <!--</view>-->
+  </view>
+</view>

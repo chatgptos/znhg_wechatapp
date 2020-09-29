@@ -1,3 +1,4 @@
+var mta= require('../../analysis/mta_analysis.js')
 var api = require('../../api.js');
 var app = getApp();
 var share_count = 0;
@@ -10,6 +11,14 @@ Page({
         left: 0,
         show_notice: false,
         animationData: {},
+        indicatorDots: true,
+        vertical: false,
+        autoplay: false,
+        interval: 2000,
+        duration: 500,
+        incolor:'#FF9966',
+        activeColor:'#FF5E62',
+        isopen:false
     },
 
     /**
@@ -33,6 +42,7 @@ Page({
         console.log('console.log(parent_id)------------------'+parent_id+'user_id'+user_id)
         app.loginBindParent({ parent_id: parent_id });
         console.log('console.log(loginBindParent)------------------')
+
     },
 
     /**
@@ -52,6 +62,8 @@ Page({
                     wx.setStorageSync('pages_index_index', res.data);
                     wx.setStorageSync('store', res.data.store);
                     page.seckillTimer();
+                    page.bookmall_seckillTimer();
+                    page.crowdc_seckillTimer();
                 }
             },
             complete: function () {
@@ -248,6 +260,45 @@ Page({
         }, 1000);
 
     },
+    bookmall_seckillTimer: function () {
+        var page = this;
+        console.log(page.data.bookmall_seckill);
+        if (!page.data.bookmall_seckill || !page.data.bookmall_seckill.rest_time)
+            return;
+        var timer = setInterval(function () {
+            if (page.data.bookmall_seckill.rest_time > 0) {
+                page.data.bookmall_seckill.rest_time = page.data.bookmall_seckill.rest_time - 1;
+            } else {
+                clearInterval(timer);
+                return;
+            }
+            page.data.bookmall_seckill.times = page.getTimesBySecond(page.data.bookmall_seckill.rest_time);
+            page.setData({
+                bookmall_seckill: page.data.bookmall_seckill,
+            });
+        }, 1000);
+
+    },
+
+    crowdc_seckillTimer: function () {
+        var page = this;
+        console.log(page.data.crowdc_seckill);
+        if (!page.data.crowdc_seckill || !page.data.crowdc_seckill.rest_time)
+            return;
+        var timer = setInterval(function () {
+            if (page.data.crowdc_seckill.rest_time > 0) {
+                page.data.crowdc_seckill.rest_time = page.data.crowdc_seckill.rest_time - 1;
+            } else {
+                clearInterval(timer);
+                return;
+            }
+            page.data.crowdc_seckill.times = page.getTimesBySecond(page.data.crowdc_seckill.rest_time);
+            page.setData({
+                crowdc_seckill: page.data.crowdc_seckill,
+            });
+        }, 1000);
+
+    },
 
     onHide: function () {
         app.pageOnHide(this);
@@ -257,7 +308,9 @@ Page({
         app.pageOnUnload(this);
         clearInterval(int);
     },
-    showNotice: function () {
+    showNotice: function (e) {
+        console.log(e)
+        mta.Event.stat('buy',{'price':'true'})
         this.setData({
             show_notice: true
         });
@@ -284,6 +337,28 @@ Page({
             m: _m < 10 ? ('0' + _m) : ('' + _m),
             s: _s < 10 ? ('0' + _s) : ('' + _s),
         };
+
+    },
+
+
+    tabOpen:function(){
+        this.setData({
+            isopen:!this.data.isopen
+        })
+    },
+
+    yushou: function () {
+        var user_info = wx.getStorageSync("user_info");
+        if(user_info.coupon<0){
+            wx.navigateTo({
+                url: '/pages/fair/fair',
+            })
+        }else {
+            wx.navigateTo({
+                url: '/pages/mall/mall',
+            })
+        }
+
 
     },
 

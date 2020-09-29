@@ -1,0 +1,318 @@
+<!--page/index.wxml-->
+<view class="wrap">
+<view class="top">
+  <view class="left">
+  </view>
+  <view class="icon">
+    <image src="{{userlist.avatar_url}}" />
+  </view>
+  <view class="">
+  {{userlist.nickname}}
+  </view>
+  <view class="focus-on">
+  +关注
+  </view>
+  </view>
+  <view class="card">
+    <view class="card-top">
+      <view class="img">
+      <image src="{{userlist.avatar_url}}" />
+      <text>
+        {{userlist.nickname}}</text>
+      </view>
+      <view class="txt"> {{title}}</view>
+    </view>
+    <view class="message">
+      <view class="li">
+        <image class="icon"></image>
+        <text>券池奖励</text>
+      </view>
+      <view class="li">
+        <image class="icon"></image>
+        <text>减免部分手续费</text>
+      </view>
+    </view>
+    <view class="con">
+      <image class="msg-icon"  src="../../images/coupon.png"></image>
+      <view class="">{{num}}
+      </view>
+      <image  class="msg-center" src="../../images/jiantou.png"></image>
+      <image  class="msg-icon" src="../../Img/doudou.png"></image>
+      <view>{{hld}}</view>
+    </view>
+    <view class="info">{{title}}</view>
+  </view>
+
+
+  <view class="card"  wx:if="{{room_info}}">
+
+    <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{room_info.room_id}}">
+    <view class="badge">
+      <text class="texts">{{liveStatusName}}</text>
+    </view>
+    </navigator>
+
+    <view class="card-top">
+      <view class="img">
+        <image src="{{room_info.pic_url}}" />
+        <block wx:if="{{goods.video_url}}">
+          <!-- <view style='width:750rpx;height:700rpx;position:absolute;top:0;left:0;'> -->
+          <image class="play {{img_hide}}" src="/images/video-play.png" data-url="{{goods.video_url}}"
+                 bindtap="play"></image>
+          <!-- </view> -->
+        </block>
+        <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{room_info.room_id}}">
+        <text>  {{room_info.content}}</text>
+        </navigator>
+      </view>
+
+      <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{room_info.room_id}}">
+      <view class="txt" style="width:400rpx"> {{room_info.name}}</view>
+      </navigator>
+    </view>
+
+    <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{room_info.room_id}}">
+    <view class="message">
+      <view class="li">
+        <image class="icon"></image>
+        <text>券池直播</text>
+      </view>
+      <view class="li">
+        <image class="icon"></image>
+        <text>点击进直播+贡献</text>
+      </view>
+    </view>
+    </navigator>
+    <view class="con">
+      <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{room_info.room_id}}">
+      <image class="msg-icon"  src="../../images/shijian.png"></image>
+      <view class="">{{room_info.end_time}} </view>
+        <view>{{room_info.start_time}}</view>
+      </navigator>
+      <image  class="msg-center" src="../../images/jiantou.png"></image>
+      <image  class="msg-icon" src="../../images/icon-seckill.png"></image>
+      <text style="line-height: 28rpx;margin-left: 5rpx;font-size: 24rpx;vertical-align: top;display: inline-block;">点我做主播</text>
+    </view>
+    <view class="info">{{liveStatusName}}</view>
+     <subscribe class="info" style="height: 20px" room-id="{{room_info.room_id}}"></subscribe>
+  </view>
+
+
+  <view class="card"  wx:if="{{article_info}}">
+    <view class="badge"  style="border-top: 120rpx solid #1113;" >
+      <text class="texts" wx:if="{{is_favorite==1}}">已追更</text>
+      <text class="texts" wx:else>催更此更</text>
+    </view>
+
+    <view class="card-top">
+      <view class="img">
+        <image src="{{article_info.avatar_url}}" />
+        <navigator url="plugin-private://wx2b03c6e691cd7370/pages/live-player-plugin?room_id={{room_info.room_id}}">
+          <text>  {{article_info.nickname}}</text>
+        </navigator>
+      </view>
+
+      <navigator >
+        <view class="txt" style="width:400rpx"  bindtap="favoriteClick" data-action="3">土豪点我买下</view>
+      </navigator>
+    </view>
+
+
+    <view class="message">
+      <view class="li">
+        <image class="icon"></image>
+        <text>{{article_info.user_list_count}}人追此更</text>
+      </view>
+      <view class="li">
+        <image class="icon"></image>
+        <text>追更满{{article_info.virtual_favorite_count}}人</text>
+      </view>
+    </view>
+
+    <view class="message">
+      <view class="li">
+        <image class="icon"></image>
+        <text>系统自动打赏作者</text>
+      </view>
+      <view class="li">
+        <image class="icon"></image>
+        <text>我也要当作者</text>
+      </view>
+    </view>
+
+
+    <view class="con">
+      <view class='pt-group-shell'>
+        <view class='flex-col pt-group'>
+          <view class='head-pic flex-grow-0 flex-x-center flex-y-center'>
+            <block wx:for="{{article_info.user_list}}" wx:for-item="item">
+              <view class='head-pic-item' wx:if='{{index==0}}'>
+                <image src='{{item.avatar_url}}' style='border:2rpx solid #ff5c5c;'></image>
+                <view class='group-frist flex-x-center flex-y-center'>更虫</view>
+              </view>
+              <view class='head-pic-item' wx:else>
+                <image wx:if='{{item.avatar_url !=0}}' src='{{item.avatar_url}}'></image>
+                <image wx:else src='/images/pt-no-group-num-pic.png' bindtap="favoriteClick" data-action="2"></image>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+        </view>
+
+
+
+
+
+    <view class="body">
+      <view class="title">{{article_info.title}}</view>
+      <view class="flex-row info">
+        <view class="flex-grow-1">{{article_info.addtime}}</view>
+        <view class="flex-grow-0">{{article_info.read_count}}</view>
+      </view>
+      <view class="content">
+        <import src="../../wxParse/wxParse.wxml"/>
+        <template is="wxParse" data="{{wxParseData:content.nodes}}"/>
+      </view>
+    </view>
+    <view class="bar">
+      <view class="flex-row">
+        <view class="flex-grow-1 flex-x-center">
+          <view wx:if="{{is_favorite==1}}" class="btn" bindtap="favoriteClick" data-action="0">
+            <image class="icon" src="/images/icon-topic-love-active.png"></image>
+            <view>已追番</view>
+          </view>
+          <view wx:else class="btn" bindtap="favoriteClick" data-action="2">
+            <image class="icon" src="/images/icon-topic-love.png"></image>
+            <view>催更此更</view>
+          </view>
+        </view>
+        <view class="flex-grow-1 flex-x-center">
+          <button open-type="share" class="btn">
+            <image class="icon" src="/images/icon-topic-share.png"></image>
+            <view>喊好友</view>
+          </button>
+        </view>
+      </view>
+    </view>
+
+
+  </view>
+
+
+
+
+  <view class="message-board">
+    <view class="title">全部留言<text>({{comment_count.score_all}})</text></view>
+
+    <view class="list" wx:for="{{comment_list}}" wx:for-item="item">
+    <view class="li">
+      <view class="info">
+        <view class="title">
+          <image src="{{item.avatar_url}}"></image>
+          <text>{{item.nickname}}</text>
+
+          <!--"nickname": null,-->
+          <!--"avatar_url": null,-->
+          <!--"score": "3.0",-->
+          <!--"content": "",-->
+          <!--"pic_list": [],-->
+          <!--"addtime": "2019-09-18"-->
+        </view>
+        <view class="msg">{{item.content}}</view>
+        <text class="time">{{item.addtime}}</text>
+      </view>
+      <!--<view class="item">-->
+            <!--<view class="info">-->
+        <!--<view class="title">-->
+          <!--<image></image>-->
+          <!--<text>大大朋友末</text>-->
+        <!--</view>-->
+        <!--<view class="msg">还可以便宜点吗？</view>-->
+        <!--<text class="time">20分钟前</text>-->
+      <!--</view>-->
+      <!--</view>-->
+    </view>
+    </view>
+
+  </view>
+
+
+
+
+  <view >
+    <view wx:if="{{is_ad}}" style="display:{{style_name}};margin-bottom:41px;">
+      <ad unit-id="adunit-e95127d428cb1c0c" bindclose="adClose"></ad>
+    </view>
+  </view>
+
+
+
+</view>
+<view class="bottom-fixed">
+<view class="show">
+  <view  class="it" bindtap="onLiki">
+    <image src="../../images/dianzan1.png" class="no" wx:if="{{islike}}"></image>
+    <image src="../../images/dianzan.png"  wx:else></image>
+    <text>点赞</text>
+  </view>
+  <view  class="it">
+    <image  src="../../images/liuyan.png"></image>
+    <text>留言</text>
+    </view>
+  <view  class="it"  bindtap="onCollec">
+    <image src="../../images/shoucang1.png" class="no" wx:if="{{isCollection}}"></image>
+    <image  src="../../images/shoucang.png" wx:else></image>
+    <text>收藏</text>
+  </view>
+</view>
+
+
+  <view  wx:if="{{is_hongbao==2}}" bindtap="openDoor" data-gid='{{id}}'  data-ishongbao='{{is_hongbao}}'  class="icon-box-flex" style='width:20px;height: 20px;margin-bottom: 10px'>
+    <!--<view  class='icon-img' style='width:20px;height: 20px'>-->
+      <!--<image src="/images/red_envelope.png" mode="widthFix"  style='width:20px;height: 20px'/>-->
+    <!--</view>-->
+    <view wx:if="{{is_parent==1}}" class='icon-img' style='width:20px;height: 20px;background:white;margin-bottom: 10px'>
+      <view wx:if="{{is_aim==1}}" class='icon-img' style='width:20px;height: 20px;background:white;margin-bottom: 10px'>
+        <image src="/images/red_envelope1.png" mode="widthFix"  style='width:20px;height: 20px;background:white;margin-bottom: 10px'/>
+      </view>
+      <view wx:else style='width:20px;height: 20px;background:white;margin-bottom: 10px'>
+        <image src="/images/red_envelope2.png" mode="widthFix"  style='width:20px;height: 20px;background:white;margin-bottom: 10px'/>
+      </view>
+    </view>
+    <view wx:else style='width:20px;height: 20px;background:white;margin-bottom: 10px'>
+      <image src="/images/red_envelope.png" mode="widthFix"  style='width:20px;height: 20px;background:white;margin-bottom: 10px'/>
+    </view>
+  </view>
+
+  <view wx:else >
+    <view class="btn"  wx:if="{{is_exchange}}">已经交换</view>
+    <view class="btn"  bindtap="exchange" wx:else>交换</view>
+  </view>
+
+
+
+<!--<view class="btn"  bindtap="exchange">交换</view>-->
+</view>
+<!---弹框模板-->
+<view class="over" hidden="{{hiddenmodalput}}"    v-how>
+<view class="bounced">
+  <view class="title">交换中…</view>
+  <view class="title">交易:{{ num }}<image class="msg-icon"   src="../../images/coupon.png"></image></view>
+
+  <view class="title">欢乐豆:{{ hld }}<image class="msg-icon"   src="../../Img/doudou.png"></image></view>
+
+  <view class="title">手续费:{{ huanledou_charge }}<image class="msg-icon"   src="../../Img/doudou.png"></image></view>
+
+  <view class="title">系统奖励:{{ xtjl }}<image class="msg-icon"   src="../../images/coupon.png"></image></view>
+
+  <view class="title">此次交换将花费您{{huanledou_total}}<image class="msg-icon"   src="../../Img/doudou.png"></image></view>
+  <view class="conmain">是否 确认继续交换？</view>
+  <view class="footer">
+  <view class="left btn"   bindtap="think" >去想想</view>
+  <view class="right btn" bindtap="sureDo">确认交换</view>
+  </view>
+</view>
+</view>
+
+

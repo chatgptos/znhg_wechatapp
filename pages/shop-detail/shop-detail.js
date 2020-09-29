@@ -10,6 +10,8 @@ Page({
      */
     data: {
         score: [1, 2, 3, 4, 5],
+        goodshg:[],
+        hg_id:0,
     },
 
     /**
@@ -56,6 +58,66 @@ Page({
             },
             complete: function () {
                 wx.hideLoading();
+            }
+        });
+
+        // app.request({
+        //     url: api.cheapmarket.list,
+        //     method: "get",
+        //     // data: { cid: 1 },
+        //     success: function (res) {
+        //         if (res.code == 0) {
+        //             setTimeout(function () {
+        //                 // 延长一秒取消加载动画
+        //                 wx.hideLoading();
+        //             }, 1000);
+        //             var goods = res.data.list;
+        //             if (res.data.page_count >= res.data.page) {
+        //                 page.setData({
+        //                     goods: goods,
+        //                     // page: res.data.page,
+        //                     page_count: res.data.page_count,
+        //                     row_count: res.data.row_count,
+        //                     show_loading_bar: 0,
+        //                 });
+        //             } else {
+        //                 page.setData({
+        //                     emptyGoods: 1,
+        //                 });
+        //             }
+        //         }
+        //     }
+        // });
+
+
+
+        app.request({
+            url: api.cheapmarket.listhg,
+            method: "post",
+            data: { shop_id: options.shop_id},
+            success: function (res) {
+                if (res.code == 0) {
+                    setTimeout(function () {
+                        // 延长一秒取消加载动画
+                        wx.hideLoading();
+                    }, 100);
+                    var goods = res.data.list;
+
+                    console.log(goods)
+                    if (res.data.page_count >= res.data.page) {
+                        page.setData({
+                            goods: goods,
+                            // page: res.data.page,
+                            page_count: res.data.page_count,
+                            row_count: res.data.row_count,
+                            show_loading_bar: 0,
+                        });
+                    } else {
+                        page.setData({
+                            emptyGoods: 1,
+                        });
+                    }
+                }
             }
         });
     },
@@ -143,5 +205,24 @@ Page({
         return {
             path: "/pages/shop-detail/shop-detail?shop_id="+shop_id+"&user_id=" + user_info.id,
         };
+    },
+    scanCode() {
+        wx.scanCode({
+            onlyFromCamera: true,
+            success(res) {
+                var page =this;
+                console.log(res.result)
+                var scan_url = res.result;
+                // var scan_url = decodeURIComponent(options.q);
+                var hg_id = scan_url.match(/\d+/) //提取链接中的数字，也就是链接中的参数id，/\d+/ 为正则表达式
+                console.log(hg_id[0]);
+                if(hg_id[0]){
+                    wx.redirectTo({
+                        url: "/pages/huogui-detail/huogui-detail?hg_id=" + hg_id[0],
+                    });
+
+                }
+            }
+        })
     },
 })

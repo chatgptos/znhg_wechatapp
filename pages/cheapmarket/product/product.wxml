@@ -1,0 +1,147 @@
+<!--product/product.wxml-->
+<view class="main">
+  <view class="flow">
+    <view class="big-img"></view>
+    <view class="list">
+      <view class="li">
+        <image src=""></image>
+      </view>
+      <view class="li">
+        <image src=""></image>
+      </view>
+      <view class="li">
+        <image src=""></image>
+      </view>
+    </view>
+  </view>
+  <view class="v-title">
+  Adidas/三叶草 ARKYN BOOT女子运动跑步 鞋
+  </view>
+  <view class="info">
+    <view class="price">
+      <view class="new-price">
+        <text>¥</text>
+        <text>279</text>
+        </view>
+      <view class="old-price">
+        <text>¥</text>
+        <text>798</text>
+        </view>
+    </view>
+    <view class="time">
+      <view class="iocn"></view>
+      <text>剩余时间 05:23:56</text>
+    </view>
+  </view>
+  <view class="message">
+    <view class="address">
+    <view>
+      <text class="sy">发货地</text>
+      <text>江苏南京 | 运费待议</text>
+    </view>
+      <text class="right">月售2330件</text>
+    </view>
+    <view class="delivery-time">
+      <text>发货时间</text>
+      <text class="right">商家承诺 付款后15天内发货</text>
+    </view>
+    <view class="pick-time">
+      <text>自提时间</text>
+      <text class="right">2019/8/26日可自提</text>
+    </view>
+  </view>
+  <view class="choose">
+    <view class="tit-info">
+      <view class="such">选择型号</view>
+      <view class="all">全部型号</view>
+    </view>
+    <view class="type-li">
+      <view class="li">
+        <view class="img-iocn"></view>
+        <text>橙灰款</text>
+      </view>
+      <view class="li">
+        <view class="img-iocn"></view>
+        <text>橙灰款</text>
+      </view>
+      <view class="li">
+        <view class="img-iocn"></view>
+        <text>橙灰款</text>
+      </view>
+      <view class="li">
+        <view class="img-iocn"></view>
+        <text>橙灰款</text>
+      </view>
+    </view>
+    <view class="tit-info">
+      <view class="such pro-detail">产品信息</view>
+      <view class="all check-detail">查看详情</view>
+    </view>
+    <view class="discuss">
+      <view class="title-tag">全网口碑（1899）</view>
+      <view class="tag-list">
+        <view class="li">质量好124</view>
+        <view class="li">质量好124</view>
+        <view class="li">质量好124</view>
+        <view class="li">质量好124</view>
+      </view>
+      <view class="dis-list">
+          <view class="li">
+            <view class="img"></view>
+            <view class="name">踏着彩虹去旅行</view>
+          </view>
+          <view class="info">
+          收到货，打开后发现质量真的挺好的，很开心的一次购买经历，希望卖家生意兴隆。</view>
+          <view class="dis-img">
+            <view><image/></view>
+            <view><image/></view>
+            <view><image/></view>
+            <view><image/></view>
+          </view>
+      </view>
+      <view class="dis-list">
+          <view class="li">
+            <view class="img"></view>
+            <view class="name">踏着彩虹去旅行</view>
+          </view>
+          <view class="info">收到货，打开后发现质量真的挺好的，很开心的一次购买经历，希望卖家生意兴隆</view>
+          <view class="dis-img">
+            <view><image/></view>
+            <view><image/></view>
+            <view><image/></view>
+            <view><image/></view>
+          </view>
+      </view>
+      <view class="more-btn">查看全部口碑</view>
+      <view class="recom-list">
+        <view class="more-title">更多推荐</view>
+        <view class="r-list">
+        <view class="more-li">
+          <view class="img"></view>
+          <view class="title">阿德曼妈咪双肩包</view>
+          <view class="price">
+            <view class="now-p"><text>¥</text><text>99</text></view>
+            <view class="old-p"><text>¥</text><text>99</text></view>
+          </view>
+        </view>
+        <view class="more-li">
+          <view class="img"></view>
+          <view class="title">阿德曼妈咪双肩包</view>
+          <view class="price">
+            <view class="now-p"><text>¥</text><text>99</text></view>
+            <view class="old-p"><text>¥</text><text>99</text></view>
+          </view>
+        </view>
+        <view class="more-li">
+          <view class="img"></view>
+          <view class="title">阿德曼妈咪双肩包</view>
+          <view class="price">
+            <view class="now-p"><text>¥</text><text>99</text></view>
+            <view class="old-p"><text>¥</text><text>99</text></view>
+          </view>
+        </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

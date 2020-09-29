@@ -16,7 +16,8 @@ Page({
     data: {
         price: 0.00,
         cash_max_day: -1,
-        selected: -1
+        selected: -1,
+      user_info:{},
     },
 
     /**
@@ -37,39 +38,46 @@ Page({
      */
     onShow: function () {
 
-        var page = this;
-        var share_setting = wx.getStorageSync("share_setting");
-        page.setData({
-            share_setting: share_setting
-        });
-        app.request({
-            url: api.share.get_price,
-            success: function (res) {
-                if (res.code == 0) {
-                    var selected = 0;
-                    var name = '';
-                    var mobile = '';
-                    var cash_last = res.data.cash_last;
-                    if (res.data.pay_type == 1) {
-                        selected = 1;
-                    }
-                    if (cash_last && (res.data.pay_type == 2 || res.data.pay_type == cash_last['type'])) {
-                        selected = cash_last['type'];
-                        name = cash_last['name'];
-                        mobile = cash_last['mobile'];
-                    }
-                    page.setData({
-                        price: res.data.price.integral,
-                        cash_max_day: res.data.cash_max_day,
-                        pay_type: res.data.pay_type,
-                        selected: selected,
-                        name: name,
-                        mobile: mobile,
-                        bank: res.data.bank,
+      var page= this;
+      var user_info = wx.getStorageSync('user_info');
+      console.log(user_info);
+      page.setData({
+        user_info: user_info,
                     });
-                }
-            }
-        });
+
+        // var page = this;
+        // var share_setting = wx.getStorageSync("share_setting");
+        // page.setData({
+        //     share_setting: share_setting
+        // });
+        // app.request({
+        //     url: api.share.get_price,
+        //     success: function (res) {
+        //         if (res.code == 0) {
+        //             var selected = 0;
+        //             var name = '';
+        //             var mobile = '';
+        //             var cash_last = res.data.cash_last;
+        //             if (res.data.pay_type == 1) {
+        //                 selected = 1;
+        //             }
+        //             if (cash_last && (res.data.pay_type == 2 || res.data.pay_type == cash_last['type'])) {
+        //                 selected = cash_last['type'];
+        //                 name = cash_last['name'];
+        //                 mobile = cash_last['mobile'];
+        //             }
+        //             page.setData({
+        //                 price: res.data.price.integral,
+        //                 cash_max_day: res.data.cash_max_day,
+        //                 pay_type: res.data.pay_type,
+        //                 selected: selected,
+        //                 name: name,
+        //                 mobile: mobile,
+        //                 bank: res.data.bank,
+        //             });
+        //         }
+        //     }
+        // });
     },
 
     /**
@@ -130,13 +138,13 @@ Page({
         // }
         console.log(e.detail.value)
         var selected = page.data.selected;
-        if (selected != 0 && selected != 1 && selected != 3) {
-            wx.showToast({
-                title: '请选择提现方式',
-                image: "/images/icon-warning.png",
-            });
-            return;
-        }
+        // if (selected != 0 && selected != 1 && selected != 3) {
+        //     wx.showToast({
+        //         title: '请选择提现方式',
+        //         image: "/images/icon-warning.png",
+        //     });
+        //     return;
+        // }
         wx.showLoading({
             title: "正在提交",
             mask: true,
@@ -188,9 +196,9 @@ Page({
             },
             success: function (res) {
                 if (res.code == 0) {
-                    setTimeout(function () {
-                        wx.hideLoading();
-                    }, 1000);
+                    // setTimeout(function () {
+                    //     wx.hideLoading();
+                    // }, 1000);
                     setTimeout(function () {
                         page.setData({
                             options: {},
@@ -198,6 +206,10 @@ Page({
                     }, 1);
                     var order_id = res.data.order_id;
 
+                    wx.showLoading({
+                        title: "正在排队支付",
+                        mask: true,
+                    });
                     //获取支付数据
                     app.request({
                         url: api.order.pay_data,
@@ -207,6 +219,11 @@ Page({
                         },
                         success: function (res) {
                             if (res.code == 0) {
+
+                                wx.showLoading({
+                                    title: "排队成功开始支付",
+                                    mask: true,
+                                });
                                 //发起支付
                                 wx.requestPayment({
                                     timeStamp: res.data.timeStamp,
@@ -224,6 +241,7 @@ Page({
                                     fail: function (e) {
                                     },
                                     complete: function (e) {
+                                        wx.hideLoading();
                                         if (e.errMsg == "requestPayment:fail" || e.errMsg == "requestPayment:fail cancel") {//支付失败转到待支付订单列表
                                             wx.showModal({
                                                 title: "提示",
@@ -266,7 +284,11 @@ Page({
                                 });
                                 return;
                             }
-                        }
+                        },
+                        complete: function (e) {
+                            wx.hideLoading();
+                        },
+
                     });
                 }
                 if (res.code == 1) {
