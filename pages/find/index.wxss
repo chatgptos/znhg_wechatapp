@@ -7,6 +7,7 @@
   margin-bottom: 20rpx;
   display: inline-block;
   width: 100%;
+  height: 10rem;
 }
 .item-ava{
   width: 40rpx;
@@ -25,6 +26,7 @@
 .item-img{
   width: 100%; 
   border-radius: 15rpx;
+  height: 100%;
   /* padding: 10px; */
 }
 .item-title{
@@ -37,7 +39,8 @@
   font-family: 'PingFang SC-Medium';
   color: #1e1e1e;
   margin: 15rpx;
-  line-height: 27rpx;
+  line-height: 34rpx;
+  font-weight:bold;
 }
 .item .name{
   display: flex;
@@ -54,6 +57,7 @@
 }
 .item-title-box{
   display: flex;
+  height: 40px;
   position: relative;
 }
 
@@ -84,10 +88,8 @@ font-size: 18rpx;
 }
 .name text:last-child{
   flex: 0 0 30rpx;
-  color: #c4c4c4;
-  text-decoration: underline;
-  line-height: 10rpx;
-  
+  color: #c4c4c4; 
+  line-height: 10rpx; 
 }
 .left,.right{
   display: inline-block;
@@ -122,9 +124,10 @@ font-size: 18rpx;
 }
 
 .bar-bottom-btn image{
-    width: 38rpx;
-    height: 38rpx;
-    margin-bottom: 0rpx;
+  width: 28rpx;
+  height: 28rpx;
+  margin-bottom: 0rpx;
+  margin-right: 5px;
 }
 
 .bar-bottom-btn text{
@@ -166,8 +169,8 @@ video {
 .scroll-view-x .scroll-view-item{
   display:inline-block;
   margin:16rpx 0rpx 16rpx 36rpx ;
-  padding: 0 24rpx;
-  font-size: 10pt;
+  padding: 0 10rpx;
+  font-size: 8pt;
   color:#666666;
   height:60rpx;
   line-height: 60rpx;
@@ -182,10 +185,15 @@ swiper{
 }
 .scroll-view-x .active{
   font-size: 16px;
-  color: white;
+  color: black;
   border-radius: 30rpx;
-  background-color: #68C3B2;
-  /*background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffa360), color-stop(140%,#ff5c5c));*/
-  /*background-image: linear-gradient(140deg, #ffa360, #ff5c5c);*/
+  /* background-color: #68C3B2; */
   height: 60rpx;
+  font-weight: bolder;
+  /* background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#ffa360), color-stop(140%,#ff5c5c));
+  background-image: linear-gradient(140deg, #ffa360, #ff5c5c);  */
+}
+
+page {  
+  background: none; 
 }

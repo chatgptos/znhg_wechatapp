@@ -203,6 +203,9 @@ Page({
         page.loadMoreGoodsList();
     },
     loadMoreGoodsList: function () {
+        wx.showLoading({ 
+            mask: false,
+        });
         var page = this;
         if (is_loading_more)
             return;
@@ -218,6 +221,7 @@ Page({
                 page: p,
             },
             success: function (res) {
+                wx.hideLoading();
                 if (res.data.list.length == 0)
                     is_no_more = true;
                 var goods_list = page.data.goods_list.concat(res.data.list);
@@ -296,13 +300,7 @@ Page({
                         wx.showLoading({
                             title: res.msg,
                         });
-                        setTimeout(function () {
-                            // 延长一秒取消加载动画
-                            wx.hideLoading();
-                            // wx.navigateTo({
-                            //     url: "/pages/coupon-merchant-mall/index?id=" + gid,
-                            // });
-                        }, 300);
+                        wx.hideLoading();
                         if(res.data.avatar_url_hongbao){
                             goods_list[key]['avatar_url_hongbao1']=res.data.avatar_url_hongbao;
                             goods_list[key]['nickname_hongbao1']=res.data.nickname_hongbao;
@@ -349,7 +347,6 @@ Page({
     switchNav: function (e) {
         var page = this;
         wx.showLoading({
-            title: "正在加载",
             mask: true,
         });
         var cid = 0;
@@ -371,23 +368,36 @@ Page({
             scrollLeft: scrollLeft,
             scrollTop: 0,
             emptyGoods: 0,
-            goods: [],
+            goods_list: [],
             show_loading_bar: 1,
         })
+  
+        page.setData({
+            show_loading_bar: true,
+        });
+        is_no_more = false;
+        var cat_id = page.data.cat_id || "";
+        var p = page.data.page || 2;
         app.request({
-            url: api.cheapmarket.list,
-            method: "get",
-            data: { cid: cid },
+            url: api.couponmerchant.business_list,
+            data: {
+                page: p,
+                cid: cid
+            }, 
+            method: "get", 
             success: function (res) {
                 if (res.code == 0) {
-                    setTimeout(function () {
-                        // 延长一秒取消加载动画
-                        wx.hideLoading();
-                    }, 1000);
-                    var goods = res.data.list;
+                    wx.hideLoading();
+                    var goods_list = res.data.list;
+
+                    page.setData({
+                        goods_list: goods_list, 
+                    });
+
+
                     if (res.data.page_count >= res.data.page) {
                         page.setData({
-                            goods: goods,
+                            goods_list: goods_list,
                             // page: res.data.page,
                             page_count: res.data.page_count,
                             row_count: res.data.row_count,

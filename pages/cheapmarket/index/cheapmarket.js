@@ -169,10 +169,7 @@ Page({
                 page.setData({
                     show_no_data_tip: (res.data.goods.list.length == 0),
                 }); 
-                    setTimeout(function () {
-                        // 延长一秒取消加载动画
-                        wx.hideLoading();
-                    }, 1000);
+                wx.hideLoading();
                     page.setData({
                         cat: res.data.cat,
                         banner: res.data.banner,
@@ -207,6 +204,9 @@ Page({
     },
 
     loadMoreGoodsList: function () {
+        wx.showLoading({ 
+            mask: false,
+        });
         var page = this;
         console.log(is_loading_more)
         if (is_loading_more)
@@ -225,6 +225,7 @@ Page({
                 page: p,
             },
             success: function (res) {
+                wx.hideLoading();
                 if (res.data.goods.list.length == 0)
                     is_no_more = true;
                 var goods = page.data.goods.concat(res.data.goods.list);  
