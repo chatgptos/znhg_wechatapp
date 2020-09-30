@@ -1,66 +1,154 @@
-// pages/find-detail/index.js
+//index.js
+//获取应用实例
+const app = getApp()
+
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    //测试视频列表
+    videoList: [
+      {
+        "typeid": 1,
+        "videoimg": "https://app.aijiehun.com/uploads/image/33/3383a74b2fe11c3ed87682c21345a241.png",
+        "videoname": "测试视频1",
+        "videourl": "https://media.w3.org/2010/05/sintel/trailer.mp4"
+      },
+      {
+        "typeid": 2,
+        "videoimg": "https://app.aijiehun.com/uploads/image/e2/e290c464640b176704c1b62cfa4601aa.png",
+        "videoname": "测试视频2",
+        "videourl": "http://www.w3school.com.cn/example/html5/mov_bbb.mp4"
+      },
+     ],
+     //测试直播地址
+    liveList:[
+      {
+        "typeid": 1,
+        "videoimg": "https://app.aijiehun.com/uploads/image/33/3383a74b2fe11c3ed87682c21345a241.png",
+        "videoname": "直播视频1", "videourl":'http://pili-media.live-test.v2gogo.com/recordings/z1.v2gogo-live-test.620b18566a5d4848b6d8ca789a1120c3/1534301729.flv'
+      },
+      {
+        "typeid": 2,
+        "videoimg": "https://app.aijiehun.com/uploads/image/33/3383a74b2fe11c3ed87682c21345a241.png",
+        "videoname": "直播视频2", "videourl": 'http://pili-media.live-test.v2gogo.com/recordings/z1.v2gogo-live-test.620b18566a5d4848b6d8ca789a1120c3/1534301729.flv'
+      }
+    ],
+    playerType:'video',
+    fitType:'contain'
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  //修改视频属性 保证只有一个video被创建
+  controlVideoPlayer: function (list, index) {
+    if(list.length===0){
+       return [];
+    }else{
+       list.forEach((item,i)=>{
+         if (index === i){
+           item.video_is_player=true;
+         }else{
+           item.video_is_player=false;
+         }
+       });
+       return list;
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onLoad:function(){
+    if(this.data.playerType==='video'){
+      let videolist = this.controlVideoPlayer(this.data.videoList, 0);
+      console.log(videolist)
+      this.setData({
+        videoList: videolist
+      });
+    }else{
+      let _listlist = this.controlVideoPlayer(this.data.liveList, 0);
+      this.setData({
+        videoList: _listlist
+      });
+    }
+    
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  //上滑事件
+  swipeUpper:function(e){
+    const { newindex}=e.detail;
+    let videolist = this.controlVideoPlayer(this.data.videoList, newindex);
+    this.setData({
+      videoList: videolist
+    });
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  //下滑事件
+  swipeDown:function(e){
+    const { newindex } = e.detail;
+    let videolist = this.controlVideoPlayer(this.data.videoList, newindex);
+    this.setData({
+      videoList: videolist
+    });
   },
+  //下滑到最后一条数据
+  swipeToEnd: function (e) {
+     wx.showLoading({
+       title: '加载中',
+       duration:1000
+     })
+    const {newindex,playerType}=e.detail;
+    console.log('playerType', playerType);
+    var newdata = [{
+      "typeid": 3,
+      "videoimg": "https://app.aijiehun.com/uploads/image/e2/e290c464640b176704c1b62cfa4601aa.png",
+      "videoname": "测试视频3",
+      "videourl": "http://www.w3school.com.cn/example/html5/mov_bbb.mp4"
+    }]
+    //live mode
+    newdata = [{
+      "typeid": 2,
+      "videoimg": "https://app.aijiehun.com/uploads/image/33/3383a74b2fe11c3ed87682c21345a241.png",
+      "videoname": "直播视频2", "videourl": 'http://pili-media.live-test.v2gogo.com/recordings/z1.v2gogo-live-test.620b18566a5d4848b6d8ca789a1120c3/1534301729.flv'
+    }, {
+        "typeid": 2,
+        "videoimg": "../../images/p002.png",
+        "videoname": "直播视频2", "videourl": 'http://pili-media.live-test.v2gogo.com/recordings/z1.v2gogo-live-test.620b18566a5d4848b6d8ca789a1120c3/1534301729.flv'
+      }];
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+    let res = this.data.videoList;
+    this.setData({
+      videoList: this.controlVideoPlayer(res.concat(newdata), newindex),
+    });
   },
+  //点击左侧按钮
+  menuTap:function(e){
+    const { buttontype, buttonname, itemid}=e.detail;
+    console.log(buttontype, buttonname, itemid);
+    switch (buttontype){
+        case "1":
+        console.log(buttonname,'调用收藏接口');
+        wx.showToast({
+          title: '收藏',
+          duration:1500
+        })
+        break;
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
+        case "2":
+        console.log(buttonname, '打开发消息弹框或者新页面');
+        wx.showToast({
+          title: '打开消息框',
+          duration: 1500
+        })
+        break;
 
+        case "3":
+        console.log(buttonname,'调用微信分享');
+        wx.showToast({
+          title: this.data.playerType,
+          duration: 1500
+        })
+        
+        break;
+    }
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
+  //上滑到第一条数据
+  swipeToStart: function (e) {
+    wx.showToast({
+      title: '当前第一个视频',
+      icon: 'none'
+    })
+     console.log(e);
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
+  
 })

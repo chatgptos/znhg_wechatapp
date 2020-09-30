@@ -1,1 +1,9 @@
-/* pages/find-detail/index.wxss */
+/**index.wxss**/
+page{
+  width: 100%;
+  height: 100%;
+}
+.video_container {
+  width: 100%;
+  height: 100%;
+} 
