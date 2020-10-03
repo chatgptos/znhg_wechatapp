@@ -86,7 +86,7 @@ Page({
             //     numer: 123
             // },
         ],
-        cat_id: "",
+        cid: 0,
         page: 1,
         cat_list: [],
         sort: 0,
@@ -168,23 +168,24 @@ Page({
             goods_list: [],
             show_no_data_tip: false,
         });
-        var cat_id = page.data.cat_id || "";
+        var cid = page.data.cid || 0;
         var p = page.data.page || 1;
         //wx.showNavigationBarLoading();
         app.request({
-            url: api.couponmerchant.business_list,
+            url: api.couponmerchant.find_list,
             data: {
                 page: p,
+                cid: cid
             },
             success: function (res) {
                 if (res.code == 0) {
-                    if (res.data.list.length == 0)
+                    if (res.data.goods.list.length == 0)
                         is_no_more = true;
                     page.setData({page: (p + 1)});
-                    page.setData({goods_list: res.data.list});
+                    page.setData({goods_list: res.data.goods.list});
                     page.setData({is_hongbao: res.data.is_hongbao});
                 }
-                console.log(res.data.list);
+                console.log(res.data.goods.list);
                 page.setData({
                     show_no_data_tip: (page.data.goods_list.length == 0),
                 });
@@ -213,18 +214,19 @@ Page({
             show_loading_bar: true,
         });
         is_loading_more = true;
-        var cat_id = page.data.cat_id || "";
+        var cid = page.data.cid || 0;
         var p = page.data.page || 2;
         app.request({
-            url: api.couponmerchant.business_list,
+            url: api.couponmerchant.find_list,
             data: {
                 page: p,
+                cid: cid
             },
             success: function (res) {
                 wx.hideLoading();
-                if (res.data.list.length == 0)
+                if (res.data.goods.list.length == 0)
                     is_no_more = true;
-                var goods_list = page.data.goods_list.concat(res.data.list);
+                var goods_list = page.data.goods_list.concat(res.data.goods.list);
                 page.setData({
                     goods_list: goods_list,
                     page: (p + 1),
@@ -247,6 +249,12 @@ Page({
         this.popup = this.selectComponent('#popup');
     },
 
+    /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function (options) {
+        this.loadData(options);
+    },
 
     /**
      * 用户点击右上角分享
@@ -363,8 +371,8 @@ Page({
             scrollLeft = 0
         }
         page.setData({
-            cid: cid,
-            page: 1,
+            cid: cid, 
+            page:2,
             scrollLeft: scrollLeft,
             scrollTop: 0,
             emptyGoods: 0,
@@ -376,10 +384,10 @@ Page({
             show_loading_bar: true,
         });
         is_no_more = false;
-        var cat_id = page.data.cat_id || "";
-        var p = page.data.page || 2;
+        var cid = page.data.cid || 0;
+        var p =  1;
         app.request({
-            url: api.couponmerchant.business_list,
+            url: api.couponmerchant.find_list,
             data: {
                 page: p,
                 cid: cid
@@ -388,7 +396,12 @@ Page({
             success: function (res) {
                 if (res.code == 0) {
                     wx.hideLoading();
-                    var goods_list = res.data.list;
+
+                    if (res.data.goods.list.length == 0){
+                        is_no_more = true;
+                    }
+                     
+                    var goods_list = res.data.goods.list;
 
                     page.setData({
                         goods_list: goods_list, 

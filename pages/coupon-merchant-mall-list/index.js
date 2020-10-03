@@ -47,6 +47,12 @@ Page({
     },
 
     /**
+     * 页面相关事件处理函数--监听用户下拉动作
+     */
+    onPullDownRefresh: function (options) {
+        this.loadData(options);
+    },
+    /**
      * 加载初始数据
      * */
     loadData: function (options) {

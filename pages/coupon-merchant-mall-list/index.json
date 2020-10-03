@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "券池兑换",
-  "usingComponents": {}
+  "usingComponents": {},
+  "enablePullDownRefresh": true
 }

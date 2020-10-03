@@ -1,5 +1,17 @@
 <include src="/commons/navbar/navbar"/>
+<view class="display"> 
+    <view class="search-box">
+      <input class="search-input bgfff" placeholder="请输入主播、商品名称或品牌" placeholder-style='color:#C0C4CC;'></input>
+      <image src="../../images/sousuo.png" class="search"></image>
+    </view>
 
+    <!-- <navigator url="/pages/cart/cart" class="cart-nav" open-type="redirect"> 
+      <view>
+        <image src="../../images/gouwuche.png" class="mall-icon"></image>
+      </view>
+    </navigator> -->
+
+  </view>
 <scroll-view scroll-x="true" class="scroll-view-x" scroll-with-animation="true" scroll-left="{{scrollLeft}}" wx:if="{{cat_show=='1'}}">
     <view class="scroll-view-item {{cid==0 ? 'active' : ''}}" data-id='0' bindtap="switchNav">
       推荐
@@ -33,12 +45,12 @@
      </view>
 
 
-    <image class="item-img" src="{{pic_url}}" ></image>
+    <image class="item-img" src="{{cover_pic}}" ></image>
     <view class="item-title-box">
-      <navigator url="url" class="item-title">{{title}}</navigator>  
+      <text data-url="url" class="item-title" bindtap="play">{{title}}</text>  
     </view>
     <view class="name">
-      <image class="item-ava" src="{{pic_url}}"></image>    
+      <image class="item-ava" src="{{avatar_url}}"></image>    
       <text class="name-title">{{name}}</text>
       <view class="heart_">
         

@@ -1,5 +1,5 @@
 .content{
-  margin: 0 20rpx;
+  margin: 0 20rpx 50px;
   text-align: justify; 
 }  
 .item{ 
@@ -196,4 +196,34 @@ swiper{
 
 page {  
   background: none; 
+}
+
+
+.search-box {
+  width: 80%;
+  /* position: relative; */
+}
+
+.search {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
+}
+
+.search-input {
+  height: 32px;
+  /* text-align: center; */
+  font-size: 10px;
+}
+.mall-icon {
+    width: 15px;
+    height: 16px;
+}
+.display {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
 }
